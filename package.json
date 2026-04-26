@@ -1,7 +1,7 @@
 {
   "name": "@nickthelegend/zama-skills",
-  "version": "4.0.0",
-  "description": "The Definitive v4.0 Zama FHEVM Skills Package. 55+ world-class, production-ready, and self-contained skills for AI coding agents.",
+  "version": "5.0.0",
+  "description": "The Definitive v5.0 Zama FHEVM Resource. 70 world-class, production-ready, and self-contained skills for building confidential applications on Ethereum.",
   "main": "index.json",
   "keywords": [
     "zama",
@@ -13,8 +13,9 @@
     "privacy",
     "ai-agents",
     "skills",
+    "defi",
     "governance",
-    "defi"
+    "mpc"
   ],
   "author": "nickthelegend",
   "license": "BSD-3-Clause-Clear",
@@ -23,5 +24,7 @@
     "url": "https://github.com/nickthelegend/zama-skills.git"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "markdownlint-cli": "^0.39.0"
+  }
 }

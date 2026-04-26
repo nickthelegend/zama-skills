@@ -1,46 +1,33 @@
-# Zama FHEVM Cheat Sheet (v4.0)
+# Zama FHEVM Elite Cheat Sheet (v5.0)
 
-The ultimate quick-reference for Zama FHEVM developers.
+The ultimate quick-reference for Zama FHEVM architects.
 
-## 1. Address Book
+## 1. Coprocessor Native Opcodes
 
-| Component | Network | Address / URL |
+| Hex | Mnemonic | Gas Weight |
 | :--- | :--- | :--- |
-| **RPC Endpoint** | Sepolia | `https://rpc.sepolia.zama.ai` |
-| **ACL Contract** | Sepolia | `0x848B0066793BcC60346Da1F49049357399B8D595` |
-| **KMS Public Key** | Sepolia | `https://gateway.sepolia.zama.ai/pubkey` |
-| **Faucet** | Sepolia | `https://faucet.zama.ai` |
+| `0x01` | `ADD` | 1.0x |
+| `0x02` | `SUB` | 1.0x |
+| `0x03` | `MUL` | 4.5x |
+| `0x04` | `SEL` | 2.0x |
+| `0x05` | `SHL` | 0.8x |
 
-## 2. Common FHE Operators
+## 2. Infrastructure (Sepolia)
 
-| Operator | Usage | Returns |
-| :--- | :--- | :--- |
-| `FHE.fromExternal` | `FHE.fromExternal(ext, proof)` | `euintX` |
-| `FHE.select` | `FHE.select(ebool, a, b)` | `euintX` |
-| `FHE.gt` | `FHE.gt(a, b)` | `ebool` |
-| `FHE.add` | `FHE.add(a, b)` | `euintX` |
-| `FHE.shl` | `FHE.shl(a, bits)` | `euintX` |
-| `FHE.allow` | `FHE.allow(handle, user)` | `void` |
-| `FHE.allowThis` | `FHE.allowThis(handle)` | `void` |
+- **Gateway**: `https://gateway.sepolia.zama.ai`
+- **ACL**: `0x848B0066793BcC60346Da1F49049357399B8D595`
+- **KMS PubKey**: `https://gateway.sepolia.zama.ai/pubkey`
 
-## 3. Hardware & L2 Integration
-- **HPU (Hardware Processing Unit)**: When targeting HPU-enabled networks, avoid `euint64` unless necessary, as `euint32` batching is significantly more optimized on current hardware.
-- **Layer 2**: FHEVM on L2 (e.g. Optimism) requires the `L2FHEVMExecutor` contract. See the `zama-fhevm-layer2-optimism-integration` skill for bridge details.
+## 3. Security Patterns
+- **MEV Protection**: Always encrypt the `amount` and `slippage` in DEX trades to prevent front-running by searchers.
+- **Key Rotation**: For high-value contracts, implement a `rotateKey()` function that requests a new re-encryption handle from the KMS.
 
-## 4. Security Patterns
-- **The "No-Branch" Rule**: Never use `if (ebool)`. Always use `FHE.select`.
-- **Callback Security**:
-```solidity
-function callback(uint256 reqId, uint32 result) public {
-    require(msg.sender == gatewayAddress, "Unauthorized");
-    require(requests[reqId].pending, "Already processed");
-    // ...
-}
-```
+## 4. FHE Math Quick-Ref
+- **Addition**: `FHE.add(a, b)`
+- **Ternary**: `FHE.select(ebool, x, y)`
+- **Comparison**: `FHE.le(a, b)` (Less than or equal)
 
-## 5. Relayer SDK Quick Start
-```typescript
-import { createInstance } from "fhevmjs";
-const instance = await createInstance({ chainId: 11155111, publicKey: "..." });
-const { handles, inputProof } = await instance.createEncryptedInput(contract, user).add32(100).encrypt();
-```
+## 5. Mainnet Checklist
+- [ ] Gas costs optimized (use `euint8` where possible).
+- [ ] No side-channel leaks via `if (cleartext)`.
+- [ ] Reentrancy guards on all decryption callbacks.

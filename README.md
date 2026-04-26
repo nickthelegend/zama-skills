@@ -1,91 +1,43 @@
-# Zama Skills — The Definitive v4.0 Collection (55 Skills)
+# Zama Skills — The Ultimate v5.0 Collection (70 Skills)
 
-![Version](https://img.shields.io/badge/version-4.0.0-blue)
-![License](https://img.shields.io/badge/license-BSD--3--Clause--Clear-green)
-![Category](https://img.shields.io/badge/category-FHEVM-orange)
+[![Version](https://img.shields.io/badge/version-5.0.0-blue)](https://github.com/nickthelegend/zama-skills)
+[![License](https://img.shields.io/badge/license-BSD--3--Clause--Clear-green)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](.github/workflows/ci.yml)
 
-The world-class, production-ready toolkit for building end-to-end encrypted DApps on Ethereum using Zama FHEVM. Designed for AI coding agents and senior blockchain engineers.
+The definitive, world-class resource for building end-to-end encrypted DApps on Ethereum using Zama FHEVM. Designed for senior blockchain architects and elite AI coding agents.
 
-**Instant install:**
+**One-click install:**
 ```bash
 npx skills add nickthelegend/zama-skills
 ```
 
 ---
 
-## 🏛️ Skills Directory (55 Total)
+## 🏛️ World-Class Skill Grid (70 Total)
 
-### 🏗️ Foundation
-| Skill | Description |
-| :--- | :--- |
-| `zama-fhevm-hardhat-quickstart` | Fast-track setup for Hardhat and Sepolia. |
-| `zama-solidity-encrypted-types` | In-depth guide to euint types and operations. |
-| `zama-advanced-fhe-operations` | Bitwise ops, math, and complex branching. |
-| `zama-architecture-deep-dive` | Inner workings of Gateway and KMS. |
-| `zama-fhevm-coprocessor-integration` | Leveraging the FHEVM executor network. |
-| `zama-fhevm-gas-optimization` | Minimizing costs for FHE operations. |
-| `zama-solidity-transformation` | Refactoring standard code to FHEVM. |
-| `zama-batch-fhe-operations` | Bulk processing of encrypted data. |
-| `zama-fhevm-multicall-batch` | Performing multiple FHE calls in one transaction. |
-| `zama-hardware-acceleration-hpu` | High-performance FHE with hardware assistance. |
-
-### 💰 Finance & DeFi
-| Skill | Description |
-| :--- | :--- |
-| `zama-confidential-erc20-token` | Implementation of the ERC7984 standard. |
-| `zama-confidential-auction` | Private sealed-bid auction mechanics. |
-| `zama-encrypted-options` | Private strike prices and positions. |
-| `zama-order-book-dex` | Encrypted matching engine for DEXs. |
-| `zama-yield-farming` | Private staking and reward calculation. |
-| `zama-private-stablecoin` | Encrypted reserves and collateralization. |
-| `zama-vesting-wallet` | Private token release schedules. |
-| `zama-wrapped-eth-cweth` | Wrapping public ETH into encrypted tokens. |
-| `zama-sealed-bid-dutch-auction` | Descending price auctions with hidden bids. |
-| `zama-private-rwa-tokenization` | Tokenizing real-world assets with privacy. |
-| `zama-confidential-otc-trade` | Large block trades without market impact. |
-| `zama-confidential-escrow` | Multi-sig style private escrow system. |
-| `zama-perpetual-futures` | Private leverage trading and liquidations. |
-| `zama-prediction-market` | Hidden outcomes and betting volumes. |
-
-### 🗳️ Governance
-| Skill | Description |
-| :--- | :--- |
-| `zama-confidential-voting` | Private aggregate voting systems. |
-| `zama-dao-governance` | Private delegated voting for DAOs. |
-| `zama-confidential-timelock` | Encrypted proposal delay logic. |
-| `zama-snapshot-voting` | Off-chain private voting with on-chain proofs. |
-
-### 🛡️ Security & Identity
-| Skill | Description |
-| :--- | :--- |
-| `zama-security-auditing` | Side-channel detection and leak prevention. |
-| `zama-reentrancy-protection` | Guarding FHE decryption callbacks. |
-| `zama-identity-verification` | Private KYC and credential management. |
-| `zama-reputation-system` | Encrypted credit scores and user ratings. |
-| `zama-fhevm-zkp-hybrid` | Combining FHE with Zero-Knowledge Proofs. |
-
-### 🛠️ Operations & Frontend
-| Skill | Description |
-| :--- | :--- |
-| `zama-relayer-sdk-integration` | Frontend connection via the Zama Relayer SDK. |
-| `zama-react-frontend-template` | UI development with Wagmi and Zama hooks. |
-| `zama-fullstack-dapp-example` | Monorepo-style DApp with React and Solidity. |
-| `zama-sepolia-deployment` | Live testing and network configuration. |
-| `zama-deployment-troubleshooting` | Debugging Gateway and KMS errors. |
-| `zama-uups-upgradable-v2` | Advanced UUPS patterns for FHEVM. |
-| `zama-layer2-optimism` | Deploying FHEVM on Optimistic rollups. |
-| `zama-mainnet-migration` | Preparing for production on Zama Mainnet. |
+| Category | Skills | Highlights |
+| :--- | :--- | :--- |
+| **🏗️ Foundation** | 15 Skills | Coprocessor Opcodes, Symbolic Execution, HPU |
+| **💰 Finance & DeFi** | 20 Skills | Flash Loans, Perps, CDPs, TWAMM |
+| **🛡️ Security** | 12 Skills | MEV Protection, Reentrancy, Key Rotation |
+| **🗳️ Governance** | 8 Skills | Delegation, Advanced Timelocks, Snapshot |
+| **🛠️ Operations** | 10 Skills | Forge Integration, Mainnet Readiness, L2 Bridge |
+| **🎮 Gaming & Social** | 5 Skills | Wordle, Soulbound Tokens, Dynamic NFTs |
 
 ---
 
-## 📂 EXAMPLES Folder
-Check the `/EXAMPLES` directory for full mini-dapps:
-- `counter-dapp`: Basic encrypted state management.
-- `erc20-dapp`: Full ERC7984 implementation.
-- `auction-dapp`: Complete sealed-bid auction UI + Contract.
+## 🚀 Featured Mini-DApps
+Explore our high-fidelity examples in the `/EXAMPLES` directory:
+- 📈 **erc20-dapp**: Full ERC7984 implementation with UI.
+- ⚖️ **vesting-dapp**: Private token release schedules.
+- 🔨 **auction-dapp**: Multi-strategy sealed-bid auctions.
+- ⚡ **counter-dapp**: Basic encrypted state management.
+- 📉 **dutch-auction-dapp**: Private descending price auctions.
 
-## 🤝 How to Contribute
-Please read [CONTRIBUTING.md](file:///D:/Project/skills/zama-skills/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+## 🤝 Contribution & Governance
+We follow the [Code of Conduct](CODE_OF_CONDUCT.md). Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for pull request guidelines.
 
-## 🗺️ Roadmap
-See [ROADMAP.md](file:///D:/Project/skills/zama-skills/ROADMAP.md) for planned features and future skill additions.
+## 🗺️ Roadmap to v6.0
+- [ ] **NPM Package**: Publish `zama-skills` as a CLI tool.
+- [ ] **Full Website**: A searchable, interactive documentation portal.
+- [ ] **Video Masterclass**: 70 high-resolution video walkthroughs for every skill.
