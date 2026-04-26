@@ -6,9 +6,9 @@
 
 The authoritative resource for building end-to-end encrypted DApps on Ethereum using Zama FHEVM. Designed for AI coding agents and senior blockchain architects.
 
-**One-command install:**
+**Install with Agent Skills CLI:**
 ```bash
-npx @nickthelegend/zama-skills
+npx skills add nickthelegend/zama-skills
 ```
 
 ---
