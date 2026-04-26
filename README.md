@@ -1,43 +1,54 @@
-# Zama Skills — The Ultimate v5.0 Collection (70 Skills)
+# Zama Skills — The Ultimate v6.0 Master Collection
 
-[![Version](https://img.shields.io/badge/version-5.0.0-blue)](https://github.com/nickthelegend/zama-skills)
+![Zama Logo](https://raw.githubusercontent.com/zama-ai/fhevm/main/fhevm.png)
+
+### The Authoritative Resource for Confidential Ethereum Development
+
+[![Version](https://img.shields.io/badge/version-6.0.0-blue)](https://github.com/nickthelegend/zama-skills)
 [![License](https://img.shields.io/badge/license-BSD--3--Clause--Clear-green)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](.github/workflows/ci.yml)
+[![Launch Status](https://img.shields.io/badge/launch-Production--Ready-brightgreen)](README.md)
+[![Skills Count](https://img.shields.io/badge/skills-78-orange)](skills/)
 
-The definitive, world-class resource for building end-to-end encrypted DApps on Ethereum using Zama FHEVM. Designed for senior blockchain architects and elite AI coding agents.
+Unlock the full power of **Fully Homomorphic Encryption (FHE)** on Ethereum. This library contains 78 production-grade skills, capstone DeFi suites, and full-stack examples designed for **AI Agents** and **Senior Blockchain Engineers**.
 
-**One-click install:**
+**Instant Installation:**
 ```bash
 npx skills add nickthelegend/zama-skills
 ```
 
 ---
 
-## 🏛️ World-Class Skill Grid (70 Total)
+## 🏛️ The Definitive Directory (78 Skills)
 
-| Category | Skills | Highlights |
+| Category | Count | Highlight |
 | :--- | :--- | :--- |
-| **🏗️ Foundation** | 15 Skills | Coprocessor Opcodes, Symbolic Execution, HPU |
-| **💰 Finance & DeFi** | 20 Skills | Flash Loans, Perps, CDPs, TWAMM |
-| **🛡️ Security** | 12 Skills | MEV Protection, Reentrancy, Key Rotation |
-| **🗳️ Governance** | 8 Skills | Delegation, Advanced Timelocks, Snapshot |
-| **🛠️ Operations** | 10 Skills | Forge Integration, Mainnet Readiness, L2 Bridge |
-| **🎮 Gaming & Social** | 5 Skills | Wordle, Soulbound Tokens, Dynamic NFTs |
+| **🏗️ Foundation** | 15 | Coprocessor Native Opcodes, HPU Acceleration |
+| **💰 Finance & DeFi** | 22 | Full DeFi Suite, Flash Loans, Perps, AMMs |
+| **🌍 RWA & Assets** | 8 | Real-World Assets Complete, Dynamic NFTs |
+| **🛡️ Security** | 15 | Enterprise-Grade Framework, MEV Protection |
+| **🗳️ Governance** | 10 | Quadratic Voting, Delegation, Timelocks |
+| **🤖 AI & Oracles** | 8 | AI Oracle Integration, Confidential Oracles |
 
 ---
 
-## 🚀 Featured Mini-DApps
-Explore our high-fidelity examples in the `/EXAMPLES` directory:
-- 📈 **erc20-dapp**: Full ERC7984 implementation with UI.
-- ⚖️ **vesting-dapp**: Private token release schedules.
-- 🔨 **auction-dapp**: Multi-strategy sealed-bid auctions.
-- ⚡ **counter-dapp**: Basic encrypted state management.
-- 📉 **dutch-auction-dapp**: Private descending price auctions.
+## 🚀 Built for AI Agents & Human Developers
+Every skill in this library is "Agent-Ready," featuring:
+- **Mermaid Diagrams** for instant visual parsing.
+- **Elite YAML Frontmatter** for semantic indexing.
+- **Copy-Paste Snippets** for autonomous implementation.
+- **AI Agent Prompts** at the bottom of every file for immediate reasoning.
 
-## 🤝 Contribution & Governance
-We follow the [Code of Conduct](CODE_OF_CONDUCT.md). Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for pull request guidelines.
+## 📂 Featured Capstone Examples
+Check the [/EXAMPLES](file:///D:/Project/skills/zama-skills/EXAMPLES/) directory for:
+- 📈 **Full DeFi Suite**: Router + AMM + Lending (Confidential).
+- 🏘️ **RWA Platform**: Encrypted property tokenization.
+- 🗳️ **Gov V2**: Quadratic voting with private tallying.
+- ⚡ **Flash Arbitrage**: Private lending strategies.
 
-## 🗺️ Roadmap to v6.0
-- [ ] **NPM Package**: Publish `zama-skills` as a CLI tool.
-- [ ] **Full Website**: A searchable, interactive documentation portal.
-- [ ] **Video Masterclass**: 70 high-resolution video walkthroughs for every skill.
+## 🤝 Community & Support
+- **Discord**: [Join our developer community](https://discord.gg/placeholder)
+- **Issues**: [Report bugs or request skills](.github/ISSUE_TEMPLATE/bug_report.yml)
+- **Contributing**: Read [CONTRIBUTING.md](CONTRIBUTING.md) to join the v7.0 roadmap.
+
+---
+*© 2026 nickthelegend. Built with Zama FHEVM.*
