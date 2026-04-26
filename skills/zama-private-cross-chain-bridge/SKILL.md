@@ -1,5 +1,5 @@
 ﻿---
-name: Zama PRIVATE CROSS CHAIN BRIDGE
+name: zama-private-cross-chain-bridge
 description: Professional v6.1.0 elite guide to private cross chain bridge on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the private cross chain bridge implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

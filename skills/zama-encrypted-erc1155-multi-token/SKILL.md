@@ -1,5 +1,5 @@
 ﻿---
-name: Zama ENCRYPTED ERC1155 MULTI TOKEN
+name: zama-encrypted-erc1155-multi-token
 description: Professional v6.1.0 elite guide to encrypted erc1155 multi token on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the encrypted erc1155 multi token implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

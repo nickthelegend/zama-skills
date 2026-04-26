@@ -1,5 +1,5 @@
 ﻿---
-name: Zama FHEVM ARCHITECTURE DEEP DIVE
+name: zama-fhevm-architecture-deep-dive
 description: Professional v6.1.0 elite guide to fhevm architecture deep dive on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the fhevm architecture deep dive implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL DAO GOVERNANCE
+name: zama-confidential-dao-governance
 description: Professional v6.1.0 elite guide to confidential dao governance on Zama FHEVM.
 category: Governance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential dao governance implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

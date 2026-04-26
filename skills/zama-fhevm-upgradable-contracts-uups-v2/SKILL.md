@@ -1,5 +1,5 @@
 ﻿---
-name: Zama FHEVM UPGRADABLE CONTRACTS UUPS V2
+name: zama-fhevm-upgradable-contracts-uups-v2
 description: Professional v6.1.0 elite guide to fhevm upgradable contracts uups v2 on Zama FHEVM.
 category: Operations
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the fhevm upgradable contracts uups v2 implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

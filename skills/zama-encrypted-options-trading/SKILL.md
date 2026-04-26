@@ -1,5 +1,5 @@
 ﻿---
-name: Zama ENCRYPTED OPTIONS TRADING
+name: zama-encrypted-options-trading
 description: Professional v6.1.0 elite guide to encrypted options trading on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the encrypted options trading implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

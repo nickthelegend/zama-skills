@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL AMM DEX WITH TWAMM
+name: zama-confidential-amm-dex-with-twamm
 description: Professional v6.1.0 elite guide to confidential amm dex with twamm on Zama FHEVM.
 category: Finance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential amm dex with twamm implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

@@ -1,5 +1,5 @@
 ﻿---
-name: Zama FHEVM PRODUCTION MONITORING AND ALERTING
+name: zama-fhevm-production-monitoring-and-alerting
 description: Professional v6.1.0 elite guide to fhevm production monitoring and alerting on Zama FHEVM.
 category: Operations
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the fhevm production monitoring and alerting implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

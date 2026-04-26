@@ -1,5 +1,5 @@
 ﻿---
-name: Zama FHEVM MEV PROTECTION PATTERNS
+name: zama-fhevm-mev-protection-patterns
 description: Professional v6.1.0 elite guide to fhevm mev protection patterns on Zama FHEVM.
 category: Security
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the fhevm mev protection patterns implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

@@ -1,5 +1,5 @@
 ﻿---
-name: Zama SEPOLIA DEPLOYMENT AND TESTING
+name: zama-sepolia-deployment-and-testing
 description: Professional v6.1.0 elite guide to sepolia deployment and testing on Zama FHEVM.
 category: Operations
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the sepolia deployment and testing implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

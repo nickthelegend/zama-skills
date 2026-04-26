@@ -1,5 +1,5 @@
 ﻿---
-name: Zama PRIVATE STABLECOIN
+name: zama-private-stablecoin
 description: Professional v6.1.0 elite guide to private stablecoin on Zama FHEVM.
 category: Finance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the private stablecoin implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

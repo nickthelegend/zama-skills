@@ -1,5 +1,5 @@
 ﻿---
-name: Zama REACT FRONTEND TEMPLATE
+name: zama-react-frontend-template
 description: Professional v6.1.0 elite guide to react frontend template on Zama FHEVM.
 category: Frontend
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the react frontend template implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

@@ -1,5 +1,5 @@
 ﻿---
-name: Zama SOLIDITY ENCRYPTED TYPES AND OPERATIONS
+name: zama-solidity-encrypted-types-and-operations
 description: Professional v6.1.0 elite guide to solidity encrypted types and operations on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the solidity encrypted types and operations implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

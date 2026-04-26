@@ -1,5 +1,5 @@
 ﻿---
-name: Zama PRIVATE DECENTRALIZED EXCHANGE FULL
+name: zama-private-decentralized-exchange-full
 description: Professional v6.1.0 elite guide to private decentralized exchange full on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the private decentralized exchange full implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

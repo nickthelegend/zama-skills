@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL PERPETUAL FUTURES
+name: zama-confidential-perpetual-futures
 description: Professional v6.1.0 elite guide to confidential perpetual futures on Zama FHEVM.
 category: Finance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential perpetual futures implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

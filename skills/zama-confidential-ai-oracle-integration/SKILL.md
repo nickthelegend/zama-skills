@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL AI ORACLE INTEGRATION
+name: zama-confidential-ai-oracle-integration
 description: Professional v6.1.0 elite guide to confidential ai oracle integration on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential ai oracle integration implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

@@ -1,5 +1,5 @@
 ﻿---
-name: Zama TRANSFORMING SOLIDITY TO FHEVM
+name: zama-transforming-solidity-to-fhevm
 description: Professional v6.1.0 elite guide to transforming solidity to fhevm on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the transforming solidity to fhevm implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

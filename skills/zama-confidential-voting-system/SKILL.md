@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL VOTING SYSTEM
+name: zama-confidential-voting-system
 description: Professional v6.1.0 elite guide to confidential voting system on Zama FHEVM.
 category: Governance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential voting system implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

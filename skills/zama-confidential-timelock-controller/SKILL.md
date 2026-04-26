@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL TIMELOCK CONTROLLER
+name: zama-confidential-timelock-controller
 description: Professional v6.1.0 elite guide to confidential timelock controller on Zama FHEVM.
 category: Governance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential timelock controller implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

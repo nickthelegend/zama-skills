@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL FLASH LOANS
+name: zama-confidential-flash-loans
 description: Professional v6.1.0 elite guide to confidential flash loans on Zama FHEVM.
 category: Finance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential flash loans implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

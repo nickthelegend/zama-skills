@@ -1,5 +1,5 @@
 ﻿---
-name: Zama FHEVM ZERO KNOWLEDGE PROOF HYBRID
+name: zama-fhevm-zero-knowledge-proof-hybrid
 description: Professional v6.1.0 elite guide to fhevm zero knowledge proof hybrid on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the fhevm zero knowledge proof hybrid implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

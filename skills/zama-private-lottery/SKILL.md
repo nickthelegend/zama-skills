@@ -1,5 +1,5 @@
 ﻿---
-name: Zama PRIVATE LOTTERY
+name: zama-private-lottery
 description: Professional v6.1.0 elite guide to private lottery on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the private lottery implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

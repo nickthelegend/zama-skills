@@ -1,5 +1,5 @@
 ﻿---
-name: Zama SEALED BID DUTCH AUCTION
+name: zama-sealed-bid-dutch-auction
 description: Professional v6.1.0 elite guide to sealed bid dutch auction on Zama FHEVM.
 category: Finance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the sealed bid dutch auction implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 

@@ -1,5 +1,5 @@
 ﻿---
-name: Zama CONFIDENTIAL DEFI YIELD FARMING
+name: zama-confidential-defi-yield-farming
 description: Professional v6.1.0 elite guide to confidential defi yield farming on Zama FHEVM.
 category: Finance
 difficulty: Advanced
@@ -64,4 +64,5 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential defi yield farming implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
 
