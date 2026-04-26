@@ -1,38 +1,32 @@
 {
   "name": "@nickthelegend/zama-skills",
   "version": "6.1.0",
-  "description": "The Definitive v6.1.0 Zama FHEVM Master Collection. 78 production-grade skills for AI agents and senior developers.",
-  "main": "index.json",
-  "files": [
-    "index.json",
-    "skills",
-    "EXAMPLES",
-    "README.md",
-    "CHEATSHEET.md",
-    "LICENSE"
-  ],
-  "homepage": "https://github.com/nickthelegend/zama-skills",
+  "description": "The ultimate Zama FHEVM skills collection (78 skills) for building fully encrypted Ethereum DApps. Perfect for AI agents and developers.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickthelegend/zama-skills"
+  },
   "keywords": [
     "zama",
     "fhevm",
-    "confidential",
     "fhe",
-    "ethereum",
+    "confidential",
     "solidity",
-    "privacy",
-    "ai-agents",
+    "ethereum",
     "skills",
-    "defi",
-    "governance"
+    "ai-agents"
   ],
   "author": "nickthelegend",
-  "license": "BSD-3-Clause-Clear",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nickthelegend/zama-skills.git"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "markdownlint-cli": "^0.39.0"
-  }
+  "license": "MIT",
+  "files": [
+    "skills",
+    "EXAMPLES",
+    "references",
+    "CHEATSHEET.md",
+    "README.md",
+    "index.js",
+    "index.d.ts"
+  ]
 }

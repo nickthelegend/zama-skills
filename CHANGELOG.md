@@ -1,17 +1,18 @@
 # Changelog
 
-All notable changes to the `zama-skills` package will be documented in this file.
+All notable changes to the `@nickthelegend/zama-skills` package will be documented in this file.
 
 ## [6.1.0] - 2026-04-26
 
-### Improved
-- **Massive Documentation Polish**: Every one of the 78 skills has been upgraded to a professional, consistent v6.1.0 standard with Mermaid diagrams and elite meta-data.
-- **NPM Readiness**: Added `index.json` and updated `package.json` for publishing as `@nickthelegend/zama-skills`.
-- **Structural Consistency**: All skills now follow the Elite v6.1.0 template.
+### Added
+- **Massive Documentation Polish**: All 78 skills now have consistent, elite-level `SKILL.md` files with Mermaid diagrams and no placeholders.
+- **Working Examples**: 5 fully self-contained Hardhat projects in `EXAMPLES/` with setup instructions.
+- **NPM Integration**: Added `index.js`, `index.d.ts`, and updated `package.json` for publishing.
+- **Elite Architecture**: Standardized architecture diagrams and security checklists across all skills.
+
+### Changed
+- License changed to **MIT**.
+- Skill structure optimized for AI agent consumption.
 
 ## [6.0.0] - 2026-04-26
-
-### Added
-- Official production-ready release with 78 skills.
-- 8 new capstone skills including Full DeFi Suite and AI Oracle Integration.
 ...

@@ -1,44 +1,32 @@
-# Zama Skills — The Ultimate v6.0 Master Collection
+# Zama Skills — The Ultimate Master Collection (78 Skills)
 
-![Zama Logo](https://raw.githubusercontent.com/zama-ai/fhevm/main/fhevm.png)
+![NPM Version](https://img.shields.io/npm/v/@nickthelegend/zama-skills)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Category](https://img.shields.io/badge/category-FHEVM-orange)
 
-### The Authoritative Resource for Confidential Ethereum Development
+The authoritative resource for building end-to-end encrypted DApps on Ethereum using Zama FHEVM. Designed for AI coding agents and senior blockchain architects.
 
-[![Version](https://img.shields.io/badge/version-6.0.0-blue)](https://github.com/nickthelegend/zama-skills)
-[![License](https://img.shields.io/badge/license-BSD--3--Clause--Clear-green)](LICENSE)
-[![Launch Status](https://img.shields.io/badge/launch-Production--Ready-brightgreen)](README.md)
-[![Skills Count](https://img.shields.io/badge/skills-78-orange)](skills/)
-
-Unlock the full power of **Fully Homomorphic Encryption (FHE)** on Ethereum. This library contains 78 production-grade skills, capstone DeFi suites, and full-stack examples designed for **AI Agents** and **Senior Blockchain Engineers**.
-
-**Instant Installation:**
+**One-command install:**
 ```bash
-npx skills add nickthelegend/zama-skills
+npx @nickthelegend/zama-skills
 ```
 
 ---
 
-## 🏛️ The Definitive Directory (78 Skills)
+## 🏛️ Skills Directory (78 Total)
 
-| Category | Count | Highlight |
+| Category | Skills | Highlights |
 | :--- | :--- | :--- |
-| **🏗️ Foundation** | 15 | Coprocessor Native Opcodes, HPU Acceleration |
-| **💰 Finance & DeFi** | 22 | Full DeFi Suite, Flash Loans, Perps, AMMs |
-| **🌍 RWA & Assets** | 8 | Real-World Assets Complete, Dynamic NFTs |
-| **🛡️ Security** | 15 | Enterprise-Grade Framework, MEV Protection |
-| **🗳️ Governance** | 10 | Quadratic Voting, Delegation, Timelocks |
-| **🤖 AI & Oracles** | 8 | AI Oracle Integration, Confidential Oracles |
+| **🏗️ Foundation** | 15 Skills | Hardhat, Encrypted Types, Coprocessors, HPU Acceleration |
+| **💰 Finance** | 25 Skills | Full DeFi Suite, Flash Loans, Perps, AMMs, RWA Complete |
+| **🗳️ Governance** | 10 Skills | Quadratic Voting, Delegation, Timelocks, Snapshot |
+| **🛡️ Security** | 15 Skills | Enterprise Framework, MEV Protection, Reentrancy |
+| **🤖 AI & Oracles** | 8 Skills | AI Oracle Integration, Confidential Oracles |
+| **🎮 Gaming** | 5 Skills | Private Wordle, Lottery, Soulbound Tokens |
 
 ---
 
-## 🚀 Built for AI Agents & Human Developers
-Every skill in this library is "Agent-Ready," featuring:
-- **Mermaid Diagrams** for instant visual parsing.
-- **Elite YAML Frontmatter** for semantic indexing.
-- **Copy-Paste Snippets** for autonomous implementation.
-- **AI Agent Prompts** at the bottom of every file for immediate reasoning.
-
-## 📂 Featured Capstone Examples
+## 🚀 Working Examples
 Check the [/EXAMPLES](file:///D:/Project/skills/zama-skills/EXAMPLES/) directory for:
 - 📈 **Full DeFi Suite**: Router + AMM + Lending (Confidential).
 - 🏘️ **RWA Platform**: Encrypted property tokenization.
@@ -46,8 +34,7 @@ Check the [/EXAMPLES](file:///D:/Project/skills/zama-skills/EXAMPLES/) directory
 - ⚡ **Flash Arbitrage**: Private lending strategies.
 
 ## 🤝 Community & Support
-- **Discord**: [Join our developer community](https://discord.gg/placeholder)
-- **Issues**: [Report bugs or request skills](.github/ISSUE_TEMPLATE/bug_report.yml)
+- **Issue Tracker**: [Report bugs or request skills](https://github.com/nickthelegend/zama-skills/issues)
 - **Contributing**: Read [CONTRIBUTING.md](CONTRIBUTING.md) to join the v7.0 roadmap.
 
 ---
