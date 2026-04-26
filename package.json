@@ -1,7 +1,7 @@
 {
   "name": "@nickthelegend/zama-skills",
-  "version": "3.0.0",
-  "description": "The Ultimate v3.0 Zama FHEVM Knowledge Base for AI Agents. 42 premium, production-grade, and self-contained skills.",
+  "version": "4.0.0",
+  "description": "The Definitive v4.0 Zama FHEVM Skills Package. 55+ world-class, production-ready, and self-contained skills for AI coding agents.",
   "main": "index.json",
   "keywords": [
     "zama",
@@ -12,7 +12,9 @@
     "solidity",
     "privacy",
     "ai-agents",
-    "skills"
+    "skills",
+    "governance",
+    "defi"
   ],
   "author": "nickthelegend",
   "license": "BSD-3-Clause-Clear",

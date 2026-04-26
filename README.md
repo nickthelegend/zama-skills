@@ -1,60 +1,91 @@
-# Zama Skills — Ultimate v3.0 FHEVM Collection (42 Skills)
+# Zama Skills — The Definitive v4.0 Collection (55 Skills)
 
-The definitive, self-contained toolkit for building end-to-end encrypted DApps on Ethereum using Zama FHEVM.
+![Version](https://img.shields.io/badge/version-4.0.0-blue)
+![License](https://img.shields.io/badge/license-BSD--3--Clause--Clear-green)
+![Category](https://img.shields.io/badge/category-FHEVM-orange)
 
-**One-command install:**
+The world-class, production-ready toolkit for building end-to-end encrypted DApps on Ethereum using Zama FHEVM. Designed for AI coding agents and senior blockchain engineers.
+
+**Instant install:**
 ```bash
 npx skills add nickthelegend/zama-skills
 ```
 
-## 📋 Full Skills Directory (42)
+---
 
-| # | Category | Skill | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Foundation | `zama-fhevm-hardhat-quickstart` | Fast-track setup for Hardhat and Sepolia. |
-| 2 | Foundation | `zama-solidity-encrypted-types` | In-depth guide to euint types and operations. |
-| 3 | Frontend | `zama-relayer-sdk-integration` | Frontend connection via the Zama Relayer SDK. |
-| 4 | Standards | `zama-confidential-erc20-token` | Implementation of the ERC7984 standard. |
-| 5 | Operations | `zama-sepolia-deployment` | Live testing and network configuration. |
-| 6 | Frontend | `zama-fullstack-dapp-example` | Monorepo-style DApp with React and Solidity. |
-| 7 | Operations | `zama-acl-kms-decryption` | Access control and threshold decryption logic. |
-| 8 | Best Practices| `zama-best-practices` | Security tips and common FHE pitfalls. |
-| 9 | Frontend | `zama-react-frontend-template` | UI development with Wagmi and Zama hooks. |
-| 10 | Testing | `zama-fhevm-mocks-testing` | Rapid local testing with simulated FHE. |
-| 11 | Finance | `zama-confidential-auction` | Private sealed-bid auction mechanics. |
-| 12 | Gaming | `zama-wordle-fhe-example` | Encrypted gaming logic (Wordle). |
-| 13 | Gaming | `zama-encrypted-nft-erc721` | Confidential metadata and traits for NFTs. |
-| 14 | Foundation | `zama-advanced-fhe-operations` | Bitwise ops, math, and complex branching. |
-| 15 | Security | `zama-security-auditing` | Side-channel detection and leak prevention. |
-| 16 | Operations | `zama-deployment-troubleshooting`| Debugging Gateway and KMS errors. |
-| 17 | Governance | `zama-confidential-voting` | Private aggregate voting systems. |
-| 18 | Gaming | `zama-private-lottery` | Fair drawing with hidden ticket numbers. |
-| 19 | Finance | `zama-encrypted-options` | Private strike prices and positions. |
-| 20 | Finance | `zama-order-book-dex` | Encrypted matching engine for DEXs. |
-| 21 | Finance | `zama-yield-farming` | Private staking and reward calculation. |
-| 22 | Operations | `zama-cross-chain-messaging` | Encrypted transit via LayerZero OApp. |
-| 23 | Operations | `zama-openzeppelin-upgrades` | UUPS upgradeable confidential contracts. |
-| 24 | Foundation | `zama-batch-fhe-operations` | Bulk processing of encrypted data. |
-| 25 | Foundation | `zama-fhevm-gas-optimization` | Minimizing costs for FHE operations. |
-| 26 | Foundation | `zama-solidity-transformation` | Refactoring standard code to FHEVM. |
-| 27 | Operations | `zama-performance-benchmarking` | Analyzing latency and throughput. |
-| 28 | Governance | `zama-dao-governance` | Private delegated voting for DAOs. |
-| 29 | Finance | `zama-private-stablecoin` | Encrypted reserves and collateralization. |
-| 30 | Foundation | `zama-architecture-deep-dive` | Inner workings of Gateway and KMS. |
-| 31 | Finance | `zama-vesting-wallet` | Private token release schedules. |
-| 32 | Finance | `zama-vesting-wallet-cliff` | Encrypted vesting with cliff milestones. |
-| 33 | Foundation | `zama-coprocessor-integration` | Leveraging the FHEVM executor network. |
-| 34 | Finance | `zama-wrapped-eth-cweth` | Wrapping public ETH into encrypted tokens. |
-| 35 | Finance | `zama-sealed-bid-dutch-auction` | Descending price auctions with hidden bids. |
-| 36 | Foundation | `zama-fee-handler-pattern` | Collecting encrypted protocol fees. |
-| 37 | Finance | `zama-private-rwa-tokenization` | Tokenizing real-world assets with privacy. |
-| 38 | Finance | `zama-confidential-otc-trade` | Large block trades without market impact. |
-| 39 | Security | `zama-reentrancy-protection` | Guarding FHE decryption callbacks. |
-| 40 | Standards | `zama-erc1155-multi-token` | Encrypted multi-token balances. |
-| 41 | Operations | `zama-uups-upgradable-v2` | Advanced UUPS patterns for FHEVM. |
-| 42 | Finance | `zama-insurance-claims` | Private claim submission and verification. |
+## 🏛️ Skills Directory (55 Total)
 
-## 🚀 Features
-- **100% Self-Contained**: Actual contracts, hooks, and tests included in every skill.
-- **AI-Agent Ready**: Optimized for autonomous coding assistants.
-- **Production Grade**: Battle-tested patterns for high-security applications.
+### 🏗️ Foundation
+| Skill | Description |
+| :--- | :--- |
+| `zama-fhevm-hardhat-quickstart` | Fast-track setup for Hardhat and Sepolia. |
+| `zama-solidity-encrypted-types` | In-depth guide to euint types and operations. |
+| `zama-advanced-fhe-operations` | Bitwise ops, math, and complex branching. |
+| `zama-architecture-deep-dive` | Inner workings of Gateway and KMS. |
+| `zama-fhevm-coprocessor-integration` | Leveraging the FHEVM executor network. |
+| `zama-fhevm-gas-optimization` | Minimizing costs for FHE operations. |
+| `zama-solidity-transformation` | Refactoring standard code to FHEVM. |
+| `zama-batch-fhe-operations` | Bulk processing of encrypted data. |
+| `zama-fhevm-multicall-batch` | Performing multiple FHE calls in one transaction. |
+| `zama-hardware-acceleration-hpu` | High-performance FHE with hardware assistance. |
+
+### 💰 Finance & DeFi
+| Skill | Description |
+| :--- | :--- |
+| `zama-confidential-erc20-token` | Implementation of the ERC7984 standard. |
+| `zama-confidential-auction` | Private sealed-bid auction mechanics. |
+| `zama-encrypted-options` | Private strike prices and positions. |
+| `zama-order-book-dex` | Encrypted matching engine for DEXs. |
+| `zama-yield-farming` | Private staking and reward calculation. |
+| `zama-private-stablecoin` | Encrypted reserves and collateralization. |
+| `zama-vesting-wallet` | Private token release schedules. |
+| `zama-wrapped-eth-cweth` | Wrapping public ETH into encrypted tokens. |
+| `zama-sealed-bid-dutch-auction` | Descending price auctions with hidden bids. |
+| `zama-private-rwa-tokenization` | Tokenizing real-world assets with privacy. |
+| `zama-confidential-otc-trade` | Large block trades without market impact. |
+| `zama-confidential-escrow` | Multi-sig style private escrow system. |
+| `zama-perpetual-futures` | Private leverage trading and liquidations. |
+| `zama-prediction-market` | Hidden outcomes and betting volumes. |
+
+### 🗳️ Governance
+| Skill | Description |
+| :--- | :--- |
+| `zama-confidential-voting` | Private aggregate voting systems. |
+| `zama-dao-governance` | Private delegated voting for DAOs. |
+| `zama-confidential-timelock` | Encrypted proposal delay logic. |
+| `zama-snapshot-voting` | Off-chain private voting with on-chain proofs. |
+
+### 🛡️ Security & Identity
+| Skill | Description |
+| :--- | :--- |
+| `zama-security-auditing` | Side-channel detection and leak prevention. |
+| `zama-reentrancy-protection` | Guarding FHE decryption callbacks. |
+| `zama-identity-verification` | Private KYC and credential management. |
+| `zama-reputation-system` | Encrypted credit scores and user ratings. |
+| `zama-fhevm-zkp-hybrid` | Combining FHE with Zero-Knowledge Proofs. |
+
+### 🛠️ Operations & Frontend
+| Skill | Description |
+| :--- | :--- |
+| `zama-relayer-sdk-integration` | Frontend connection via the Zama Relayer SDK. |
+| `zama-react-frontend-template` | UI development with Wagmi and Zama hooks. |
+| `zama-fullstack-dapp-example` | Monorepo-style DApp with React and Solidity. |
+| `zama-sepolia-deployment` | Live testing and network configuration. |
+| `zama-deployment-troubleshooting` | Debugging Gateway and KMS errors. |
+| `zama-uups-upgradable-v2` | Advanced UUPS patterns for FHEVM. |
+| `zama-layer2-optimism` | Deploying FHEVM on Optimistic rollups. |
+| `zama-mainnet-migration` | Preparing for production on Zama Mainnet. |
+
+---
+
+## 📂 EXAMPLES Folder
+Check the `/EXAMPLES` directory for full mini-dapps:
+- `counter-dapp`: Basic encrypted state management.
+- `erc20-dapp`: Full ERC7984 implementation.
+- `auction-dapp`: Complete sealed-bid auction UI + Contract.
+
+## 🤝 How to Contribute
+Please read [CONTRIBUTING.md](file:///D:/Project/skills/zama-skills/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## 🗺️ Roadmap
+See [ROADMAP.md](file:///D:/Project/skills/zama-skills/ROADMAP.md) for planned features and future skill additions.

@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --shadow-center: 0 0 0 0 transparent;
+  --animate-pulse-fast: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  /* Updated color palette */
+  --glass-yellow-primary: #ffd208;
+  --glass-yellow-secondary: #a38025;
+  --glass-yellow-dark: #a38025;
+  --glass-bg-light: #f4f4f4;
+  --glass-bg-medium: #e8e8e8;
+  --glass-bg-dark: #d9d9d9;
+  --glass-border: #2d2d2d;
+  --glass-shadow: 0 0 0 0 transparent;
+  --glass-shadow-lg: 0 0 0 0 transparent;
+}
+
+@plugin "daisyui" {
+  themes:
+    light,
+    dark --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+
+  --color-primary: #ffd208;
+  --color-primary-content: #2d2d2d;
+  --color-secondary: #a38025;
+  --color-secondary-content: #f4f4f4;
+  --color-accent: #ffd208;
+  --color-accent-content: #2d2d2d;
+  --color-neutral: #2d2d2d;
+  --color-neutral-content: #f4f4f4;
+  --color-base-100: #fff7ec;
+  --color-base-200: #f4f4f4;
+  --color-base-300: #e8e8e8;
+  --color-base-content: #2d2d2d;
+  --color-info: #ffd208;
+  --color-success: #a38025;
+  --color-warning: #a38025;
+  --color-error: #2d2d2d;
+
+  --radius-field: 0;
+  --radius-box: 0;
+  --tt-tailw: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+
+  --color-primary: #ffd208;
+  --color-primary-content: #2d2d2d;
+  --color-secondary: #a38025;
+  --color-secondary-content: #f4f4f4;
+  --color-accent: #ffd208;
+  --color-accent-content: #2d2d2d;
+  --color-neutral: #f4f4f4;
+  --color-neutral-content: #2d2d2d;
+  --color-base-100: #2d2d2d;
+  --color-base-200: #2d2d2d;
+  --color-base-300: #2d2d2d;
+  --color-base-content: #f4f4f4;
+  --color-info: #ffd208;
+  --color-success: #a38025;
+  --color-warning: #a38025;
+  --color-error: #2d2d2d;
+
+  --radius-field: 0;
+  --radius-box: 0;
+
+  --tt-tailw: 0;
+  --tt-bg: var(--color-primary);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family:
+      "Telegraf",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+    background: #f4f4f4;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  [data-theme="dark"] body,
+  body:where([data-theme="dark"], [data-theme="dark"] *) {
+    background: #2d2d2d;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+:root,
+[data-theme] {
+  background: transparent;
+}
+
+.btn {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.btn.btn-ghost {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.link {
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  opacity: 80%;
+}
+
+/* Updated card and button styles */
+.glass-card {
+  background: #f4f4f4;
+  border: 1px solid #2d2d2d;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.glass-card-strong {
+  background: #e8e8e8;
+  border: 1px solid #2d2d2d;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.glass-button {
+  background: #ffd208;
+  border: 1px solid #2d2d2d;
+  box-shadow: none;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button:hover:not(:disabled) {
+  background: #a38025;
+  transform: none;
+  box-shadow: none;
+}
+
+.glass-button:active:not(:disabled) {
+  transform: none;
+}
+
+.glass-input {
+  background: #f4f4f4;
+  border: 1px solid #2d2d2d;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  background: #f4f4f4;
+  border-color: #ffd208;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Global border-radius reset for form elements */
+input,
+textarea,
+select,
+button,
+.input,
+.textarea,
+.select,
+.card,
+.modal,
+.alert,
+.badge,
+.tooltip,
+.dropdown-content {
+  border-radius: 0 !important;
+}
