@@ -1,6 +1,6 @@
 ﻿---
 name: Zama FHEVM GOVERNANCE V2 WITH QUADRATIC VOTING
-short_description: Professional v6.1.0 elite guide to fhevm governance v2 with quadratic voting on Zama FHEVM.
+description: Professional v6.1.0 elite guide to fhevm governance v2 with quadratic voting on Zama FHEVM.
 category: Governance
 difficulty: Advanced
 estimated_time: "5 hours"
@@ -64,3 +64,4 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the fhevm governance v2 with quadratic voting implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+

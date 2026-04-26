@@ -1,6 +1,6 @@
 ﻿---
 name: Zama FHEVM ZERO KNOWLEDGE FHE HYBRID ADVANCED
-short_description: Professional v6.1.0 elite guide to fhevm zero knowledge fhe hybrid advanced on Zama FHEVM.
+description: Professional v6.1.0 elite guide to fhevm zero knowledge fhe hybrid advanced on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
 estimated_time: "5 hours"
@@ -64,3 +64,4 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the fhevm zero knowledge fhe hybrid advanced implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+

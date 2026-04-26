@@ -1,6 +1,6 @@
 ﻿---
 name: Zama CONFIDENTIAL VESTING WALLET CLIFF
-short_description: Professional v6.1.0 elite guide to confidential vesting wallet cliff on Zama FHEVM.
+description: Professional v6.1.0 elite guide to confidential vesting wallet cliff on Zama FHEVM.
 category: Finance
 difficulty: Advanced
 estimated_time: "5 hours"
@@ -64,3 +64,4 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the confidential vesting wallet cliff implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+

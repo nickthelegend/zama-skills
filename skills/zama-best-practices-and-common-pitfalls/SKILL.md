@@ -1,6 +1,6 @@
 ﻿---
 name: Zama BEST PRACTICES AND COMMON PITFALLS
-short_description: Professional v6.1.0 elite guide to best practices and common pitfalls on Zama FHEVM.
+description: Professional v6.1.0 elite guide to best practices and common pitfalls on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
 estimated_time: "5 hours"
@@ -64,3 +64,4 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the best practices and common pitfalls implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+

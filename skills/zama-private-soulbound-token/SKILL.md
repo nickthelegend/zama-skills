@@ -1,6 +1,6 @@
 ﻿---
 name: Zama PRIVATE SOULBOUND TOKEN
-short_description: Professional v6.1.0 elite guide to private soulbound token on Zama FHEVM.
+description: Professional v6.1.0 elite guide to private soulbound token on Zama FHEVM.
 category: Foundation
 difficulty: Advanced
 estimated_time: "5 hours"
@@ -64,3 +64,4 @@ npx hardhat test references/test.ts
 
 ## AI Agent Prompt
 > "Act as a Zama FHEVM Security Auditor. Review the private soulbound token implementation for potential side-channel leaks via gas patterns or incorrect FHE.select usage."
+
