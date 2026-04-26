@@ -1,21 +1,19 @@
-# Zama AI Agents Configuration
+# Zama AI Agents - Advanced Configuration
 
-This repository is optimized for consumption by AI agents (Claude, Cursor, GPT-4).
+This repository is a structured knowledge base designed to enable AI agents to build full-stack confidential applications.
 
-## Agent Usage Patterns
+## Advanced Prompting Patterns
 
-### For Cursor / VS Code Copilot
-1.  **Index the Repo**: Ensure the `skills/` directory is indexed.
-2.  **Referencing Skills**: Ask the agent: "Use the `zama-confidential-erc20-token` skill to implement a private payout system."
+### Pattern 1: The "Encrypted-First" Refactor
+**Prompt**: "Examine this standard Solidity contract. Use the `zama-solidity-transformation` skill to identify all sensitive state variables and refactor the `if` statements into `FHE.select` logic. Ensure all inputs are changed to `externalEuint` with proofs."
 
-### For Claude / ChatGPT
-Paste the content of a specific `SKILL.md` to provide the agent with protocol-specific knowledge.
+### Pattern 2: The "Frontend Integration" Sync
+**Prompt**: "I have the `ConfidentialAuction` contract deployed. Use the `zama-relayer-sdk-integration` and `zama-react-frontend-template` skills to build a React hook that fetches the encrypted bid and decrypts it using the user's signature via the Relayer SDK."
 
-## Logic Flow for Agents
-1.  **Understand Types**: Always use `euint` for sensitive data.
-2.  **Handle Inputs**: Use `externalEuint` + `proof` for inputs from users.
-3.  **Manage Permissions**: Explicitly call `FHE.allow` or `FHE.allowThis` for every ciphertext handle.
-4.  **Async Decryption**: Handle the 2-step process (Request -> Callback) for public reveals.
+### Pattern 3: The "Security Audit" Drill
+**Prompt**: "Analyze this FHEVM contract for information leaks. specifically check for side-channels where cleartext data is used for branching. Use the `zama-security-auditing` skill as a reference for common vulnerabilities."
 
-## Troubleshooting for Agents
-If the agent generates code that uses standard `if` statements on encrypted values, point them to the `zama-security-auditing-best-practices` skill.
+## Agent Constraints
+- **Always** use `FHE.allowThis()` for state variables that need on-chain updates.
+- **Never** perform a direct `if (encryptedValue)` check.
+- **Always** include ZK input proofs for user-submitted ciphertexts.

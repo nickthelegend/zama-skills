@@ -1,7 +1,7 @@
 {
   "name": "@nickthelegend/zama-skills",
-  "version": "1.0.0",
-  "description": "Premium FHEVM skills for AI agents",
+  "version": "2.0.0",
+  "description": "The Ultimate 30-Skill Zama FHEVM Knowledge Base for AI Agents. Production-ready, self-contained, and comprehensive.",
   "main": "index.json",
   "keywords": [
     "zama",
@@ -9,10 +9,17 @@
     "blockchain",
     "privacy",
     "ai-agents",
-    "skills"
+    "skills",
+    "confidential-computing",
+    "homomorphic-encryption",
+    "ethereum"
   ],
   "author": "nickthelegend",
   "license": "BSD-3-Clause-Clear",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickthelegend/zama-skills.git"
+  },
   "dependencies": {},
   "devDependencies": {}
 }
