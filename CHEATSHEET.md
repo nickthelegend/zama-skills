@@ -1,41 +1,41 @@
-# Zama FHEVM Cheat Sheet
+# Zama FHEVM Cheat Sheet (v3.0)
 
-Quick reference for common operations, addresses, and best practices.
+Quick reference for common operations, addresses, and security patterns.
 
 ## 1. Core FHE Operators
 
 | Operation | Solidity Code | Description |
 | :--- | :--- | :--- |
 | **Input** | `FHE.fromExternal(val, proof)` | Convert user input to encrypted type. |
-| **Addition** | `FHE.add(a, b)` | Sum of two encrypted values. |
-| **Comparison** | `FHE.ge(a, b)` | Greater than or equal (returns `ebool`). |
 | **Selection** | `FHE.select(ebool, a, b)` | Encrypted `if-else` (ternary). |
 | **Shift** | `FHE.shl(a, 2)` | Bitwise shift left (cheap multiplication). |
 | **Permission** | `FHE.allow(handle, address)` | Grant decryption rights via Gateway. |
+| **Random** | `FHE.random8()` | Generate encrypted random byte (future API). |
 
-## 2. Sepolia Addresses (Official)
+## 2. Sepolia Infrastructure
 
-- **KMS Public Key**: Fetch dynamically using `fhevm.getPublicKey(contractAddress)`
-- **ACL Contract**: `0x...` (See [fhevm.zama.ai](https://fhevm.zama.ai) for latest)
-- **Gateway**: Integrated into the Zama Sepolia RPC.
+- **Gateway RPC**: `https://rpc.sepolia.zama.ai`
+- **Faucet**: `https://faucet.zama.ai`
+- **KMS Public Key**: Fetch via Relayer SDK at runtime.
 
-## 3. Relayer SDK Snippets
+## 3. Security Checklist (v3.0)
+- [ ] **No Reverts on Secrets**: Never use `require(encryptedValue)` or `if (encryptedValue)`.
+- [ ] **Callback Guards**: Protect `FHE.requestDecryption` callbacks from unauthorized calls.
+- [ ] **ACL Management**: Call `FHE.allowThis()` for every state variable change.
+- [ ] **Input Proofs**: Always validate ZK proofs for `externalEuint` inputs.
+- [ ] **Gas Limits**: FHE operations can consume >10M gas. Test limits on Sepolia.
 
-### Initializing FHEVM
+## 4. Coprocessor Pattern
+FHEVM uses symbolic execution. Transactions on-chain produce "pointers" to ciphertexts. The actual computation is offloaded to the coprocessor network, ensuring standard block times are maintained.
+
+## 5. Relayer SDK (TypeScript)
 ```typescript
-import { createInstance } from "fhevmjs";
-const instance = await createInstance({ chainId, publicKey });
-```
-
-### Creating Encrypted Input
-```typescript
-const input = instance.createEncryptedInput(contractAddress, userAddress)
+const encryptedInput = instance.createEncryptedInput(contractAddress, userAddress)
   .add32(amount)
   .encrypt();
-```
 
-## 4. Best Practices Checklist
-- [ ] Use `euint8` for low-range numbers to save gas.
-- [ ] Always call `FHE.allowThis(handle)` for state variables.
-- [ ] Use `FHE.asEuintX()` for literals (e.g., `FHE.asEuint32(100)`).
-- [ ] Implement "Silent Failures" for private balance checks.
+await contract.performAction(
+  encryptedInput.handles[0],
+  encryptedInput.inputProof
+);
+```

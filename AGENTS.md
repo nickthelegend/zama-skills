@@ -1,19 +1,19 @@
-# Zama AI Agents - Advanced Configuration
+# Zama AI Agents - v3.0 Advanced Configuration
 
-This repository is a structured knowledge base designed to enable AI agents to build full-stack confidential applications.
+This repository is a production-grade knowledge base optimized for AI agents.
 
-## Advanced Prompting Patterns
+## Advanced Patterns for Agents
 
-### Pattern 1: The "Encrypted-First" Refactor
-**Prompt**: "Examine this standard Solidity contract. Use the `zama-solidity-transformation` skill to identify all sensitive state variables and refactor the `if` statements into `FHE.select` logic. Ensure all inputs are changed to `externalEuint` with proofs."
+### Pattern 1: Refactor Public Contract to FHEVM
+**Prompt**: "Use the `zama-solidity-transformation` skill to identify all sensitive state in this contract. Refactor the logic to use `euint` types and `FHE.select`. Ensure all inputs are changed to `externalEuint` + proofs."
 
-### Pattern 2: The "Frontend Integration" Sync
-**Prompt**: "I have the `ConfidentialAuction` contract deployed. Use the `zama-relayer-sdk-integration` and `zama-react-frontend-template` skills to build a React hook that fetches the encrypted bid and decrypts it using the user's signature via the Relayer SDK."
+### Pattern 2: Add Decryption Flow
+**Prompt**: "I need to reveal the winner of this auction. Use the `zama-acl-kms-decryption` and `zama-reentrancy-protection` skills to implement a secure `FHE.requestDecryption` flow with a guarded callback."
 
-### Pattern 3: The "Security Audit" Drill
-**Prompt**: "Analyze this FHEVM contract for information leaks. specifically check for side-channels where cleartext data is used for branching. Use the `zama-security-auditing` skill as a reference for common vulnerabilities."
+### Pattern 3: Optimize Gas for FHE
+**Prompt**: "This contract is too expensive. Use the `zama-fhevm-gas-optimization` and `zama-batch-fhe-operations` skills to reduce the number of FHE operations and batch the permission calls."
 
-## Agent Constraints
-- **Always** use `FHE.allowThis()` for state variables that need on-chain updates.
-- **Never** perform a direct `if (encryptedValue)` check.
-- **Always** include ZK input proofs for user-submitted ciphertexts.
+## Agent Rules
+1. **Always** check `references/` for actual contract code before generating a new implementation.
+2. **Never** assume a standard Solidity pattern (like mapping lookup) is private without using `euint`.
+3. **Always** implement `FHE.allowThis()` for state persistence.

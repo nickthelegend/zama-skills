@@ -1,18 +1,18 @@
 {
   "name": "@nickthelegend/zama-skills",
-  "version": "2.0.0",
-  "description": "The Ultimate 30-Skill Zama FHEVM Knowledge Base for AI Agents. Production-ready, self-contained, and comprehensive.",
+  "version": "3.0.0",
+  "description": "The Ultimate v3.0 Zama FHEVM Knowledge Base for AI Agents. 42 premium, production-grade, and self-contained skills.",
   "main": "index.json",
   "keywords": [
     "zama",
     "fhevm",
-    "blockchain",
+    "confidential",
+    "fhe",
+    "ethereum",
+    "solidity",
     "privacy",
     "ai-agents",
-    "skills",
-    "confidential-computing",
-    "homomorphic-encryption",
-    "ethereum"
+    "skills"
   ],
   "author": "nickthelegend",
   "license": "BSD-3-Clause-Clear",
