@@ -1,86 +1,92 @@
 ---
 name: Zama Confidential ERC20 Token (ERC7984)
-description: Detailed guide to implementing and deploying a confidential ERC20 token using the ERC7984 standard on FHEVM
-category: blockchain
-tags: [fhevm, solidity, erc20, erc7984, openzeppelin]
+description: The definitive guide to building and deploying confidential ERC20 tokens using the Zama FHEVM. Learn about the ERC7984 standard, private transfers, and encrypted allowances.
+category: Standards
+difficulty: intermediate
+tags: [fhevm, solidity, erc20, erc7984, token]
+estimated_time: 2.5 hours
 ---
 
 # Zama Confidential ERC20 Token (ERC7984)
 
-ERC7984 is a standard for confidential tokens on FHEVM, extending the familiar ERC20 interface with encrypted balances and transfers.
+Standard ERC20 tokens expose every transaction and balance to the world. The ERC7984 standard, powered by Zama's FHEVM, brings full confidentiality to Ethereum tokens.
 
-## 1. Prerequisites
+## 1. Overview
+In a Confidential ERC20:
+- **Balances** are stored as `euint32` or `euint64`.
+- **Transfer Amounts** are encrypted.
+- **Allowances** can be encrypted or public depending on the use case.
 
-You will need the OpenZeppelin confidential contracts library:
+## 2. Prerequisites
+- Basic understanding of the ERC20 standard.
+- Completed the `zama-solidity-encrypted-types` skill.
 
-```bash
-npm install @openzeppelin/confidential-contracts
-```
+## 3. Step-by-Step Implementation
 
-## 2. Basic Implementation
-
-To create a confidential token, inherit from `ERC7984` and `ZamaEthereumConfig`.
+### Step 1: State Variables
+Instead of `mapping(address => uint256)`, we use `euint`.
 
 ```solidity
-// SPDX-License-Identifier: BSD-3-Clause-Clear
-pragma solidity ^0.8.24;
+import { FHE, euint32 } from "@fhevm/solidity/lib/FHE.sol";
 
-import {Ownable2Step, Ownable} from "@openzeppelin/contracts/access/Ownable2Step.sol";
-import {FHE, externalEuint64, euint64} from "@fhevm/solidity/lib/FHE.sol";
-import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
-import {ERC7984} from "@openzeppelin/confidential-contracts/token/ERC7984.sol";
-
-contract MyConfidentialToken is ZamaEthereumConfig, ERC7984, Ownable2Step {
-    constructor(
-        address owner,
-        uint64 initialSupply,
-        string memory name,
-        string memory symbol,
-        string memory tokenURI
-    ) ERC7984(name, symbol, tokenURI) Ownable(owner) {
-        // Minting initial supply as encrypted value
-        euint64 encryptedAmount = FHE.asEuint64(initialSupply);
-        _mint(owner, encryptedAmount);
-    }
+contract ConfidentialERC20 is ZamaEthereumConfig {
+    mapping(address => euint32) private _balances;
+    euint32 private _totalSupply;
 }
 ```
 
-## 3. Key Functions
+### Step 2: The Transfer Logic
+Transfers in FHEVM require branchless logic.
 
-- **`confidentialBalanceOf(address account)`**: Returns the `euint64` handle representing the account's balance.
-- **`confidentialTransfer(address to, bytes32 encryptedAmount, bytes calldata proof)`**: Performs an encrypted transfer.
-- **`confidentialApprove(address spender, bytes32 encryptedAmount, bytes calldata proof)`**: Confidential approval for spending.
-
-## 4. Frontend Integration
-
-When interacting with the token from a frontend, use the Relayer SDK to create encrypted inputs for transfers:
-
-```typescript
-const encryptedInput = await fhevm
-  .createEncryptedInput(tokenAddress, userAddress)
-  .add64(100) // Transfer 100 tokens
-  .encrypt();
-
-await token.confidentialTransfer(
-  recipientAddress,
-  encryptedInput.handles[0],
-  encryptedInput.inputProof
-);
+```solidity
+function _transfer(address from, address to, euint32 amount) internal {
+    euint32 fromBalance = _balances[from];
+    
+    // Check if sender has enough balance (branchless)
+    ebool canTransfer = FHE.le(amount, fromBalance);
+    
+    // Calculate new balances using FHE.select or subtraction logic
+    euint32 amountToTransfer = FHE.select(canTransfer, amount, FHE.asEuint32(0));
+    
+    _balances[from] = FHE.sub(fromBalance, amountToTransfer);
+    _balances[to] = FHE.add(_balances[to], amountToTransfer);
+    
+    FHE.allowThis(_balances[from]);
+    FHE.allowThis(_balances[to]);
+}
 ```
 
-## 5. The "Silent Failure" Pattern
+### Step 3: Approval and Allowance
+Encrypted allowances prevent observers from knowing the spending limits of a contract.
 
-A critical security feature of ERC7984 is that transfers do not revert if the user has an insufficient balance. Instead, the transaction succeeds but transfers `0` tokens. This prevents attackers from "probing" a user's balance by observing which transactions revert.
+```solidity
+function approve(address spender, externalEuint32 amount, bytes calldata proof) public {
+    euint32 val = FHE.fromExternal(amount, proof);
+    _allowances[msg.sender][spender] = val;
+    FHE.allowThis(val);
+}
+```
 
-### Handling it in the Frontend
-Your frontend should check the balance **before** sending a transaction to provide a better user experience, while the contract ensures privacy on-chain.
+## 4. Security Considerations
+- **Total Supply Leaks**: Even if balances are private, the `totalSupply()` is often public. Be aware of what this reveals about the token's ecosystem.
+- **Zero-Value Transfers**: An attacker might try to send zero-value transfers to observe gas patterns. FHEVM operations have fixed gas costs to mitigate this.
 
-## 6. Security & Auditing Tips
-- **Total Supply**: While individual balances are encrypted, the `totalSupply` is often public. Be careful not to leak info if you implement a "minting" mechanism that is triggered by private events.
-- **ACL Permissions**: Ensure `FHE.allow` is called after every `_mint` or `_transfer` so the recipient can actually see their new balance handle.
+## 5. Gas Optimization Tips
+- **Bit-Width Choice**: Use `euint32` for tokens with low decimals or small supplies. Use `euint64` for high-precision assets.
+- **Batching**: Use `FHE.allow()` on arrays to save gas during multi-transfers.
 
-## 7. Self-Contained References
+## 6. Common Pitfalls & Solutions
+- **Event Logging**: Do NOT log the `amount` in a transfer event. Standard ERC20 events must be modified to exclude the encrypted value.
+- **Viewing Balances**: Users cannot see their balance via a simple `balanceOf()` call. They must use the Relayer SDK decryption flow.
+
+## 7. Full Implementation Reference
+The `references/` folder contains a complete implementation of `ConfidentialERC20.sol` which includes:
+- Minting and Burning logic.
+- Full ERC7984 compliance.
+- Integration with the Zama ACL.
+
+## 8. Self-Contained References
 Check the `references/` folder for:
-- `ConfidentialERC20.sol`: Implementation of the ERC7984 standard.
-- `IConfidentialERC20.md`: Interface documentation.
-- `erc7984-tutorial.md`: Step-by-step guide from Zama docs.
+- `ConfidentialERC20.sol`: The core contract implementation.
+- `IConfidentialERC20.sol`: Interface for integration.
+- `erc7984-tutorial.md`: Detailed breakdown of the standard.

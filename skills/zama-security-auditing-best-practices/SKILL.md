@@ -1,71 +1,86 @@
 ---
-name: Zama Security Auditing Best Practices
-description: Premium guide for auditing FHEVM smart contracts. Learn to identify side-channel leaks, ACL misconfigurations, and logic errors unique to homomorphic encryption.
-category: security
-tags: [fhevm, security, audit, best-practices, privacy]
+name: Zama Security Auditing and Best Practices
+description: The master guide to auditing FHEVM smart contracts. Learn to identify side-channel leaks, information leakage via cleartext branching, and ACL misconfigurations.
+category: Security
+difficulty: advanced
+tags: [fhevm, security, auditing, best-practices, privacy]
+estimated_time: 5 hours
 ---
 
-# Zama Security Auditing Best Practices
+# Zama Security Auditing and Best Practices
 
-Auditing FHEVM contracts requires looking beyond standard Solidity vulnerabilities like reentrancy. You must ensure that no sensitive data "leaks" through cleartext side-channels.
+Developing on FHEVM requires a "privacy-first" mindset. Standard Solidity patterns can often leak sensitive data when applied to encrypted types. This guide is your checklist for building secure, leak-proof confidential applications.
 
-## 1. Information Leakage via Control Flow
+## 1. Overview
+FHEVM security isn't just about preventing hacks; it's about preventing **information leakage**. A contract can be "secure" from a theft perspective but completely fail at its "confidentiality" requirement.
 
-The most common security flaw in FHEVM is leaking information through `if` statements or `require` checks that depend on cleartext data derived from encrypted state.
+## 2. Core Security Pillars
 
-### Vulnerability: Branching on Decrypted Data
+### Pillar 1: No Cleartext Branching on Secrets
+This is the #1 mistake. Never use a decrypted value to decide the execution path in a way that is observable.
+
 ```solidity
-// ❌ VULNERABLE
-function checkBalance(address user) public {
-    uint32 clearBalance = FHE.decrypt(balances[user]); // Decrypting on-chain!
-    if (clearBalance > 1000) {
-        doSomethingSpecial();
+// ❌ DANGEROUS: Leaks whether the value is > 100 via the execution path
+function check(euint32 val) public {
+    uint32 clearVal = FHE.decrypt(val);
+    if (clearVal > 100) {
+        doSomething();
     }
 }
-```
-**Risk**: Anyone can observe which branch was taken by looking at gas consumption or state changes, effectively learning if the balance is > 1000.
 
-### Fix: Use `FHE.select`
-```solidity
-// ✅ SECURE
-function checkBalance(address user) public {
-    ebool isHigh = FHE.gt(balances[user], 1000);
-    // Logic remains encrypted
-    state = FHE.select(isHigh, val1, val2);
+// ✅ SECURE: Uses branchless logic
+function check(euint32 val) public {
+    ebool condition = FHE.gt(val, FHE.asEuint32(100));
+    // Perform actions based on 'condition' using FHE.select
 }
 ```
 
-## 2. ACL and Permission Leaks
+### Pillar 2: Access Control List (ACL) Integrity
+Every encrypted handle is protected by the Zama ACL. If you don't call `FHE.allow()`, the Gateway/KMS will refuse to process the ciphertext.
 
-Every `euint` handle has an Access Control List (ACL). If you grant permission to the wrong address, they can decrypt the value via the Gateway.
+- **Check**: Are you calling `FHE.allowThis()` for every state variable change?
+- **Check**: Are you properly scoping permissions for users?
 
-### Audit Checklist for ACL
-- [ ] Is `FHE.allow` used only for the intended recipient?
-- [ ] Is `FHE.allowThis` used for all state variables that the contract needs to operate on?
-- [ ] Are you using `FHE.allowTransient` for values passed between contracts?
+### Pillar 3: Input Validation (Proofs)
+Always validate that the user's `externalEuint` comes with a valid proof.
 
-## 3. Input Validation Side-Channels
+```solidity
+function setSecret(externalEuint32 val, bytes calldata proof) public {
+    // This library call implicitly validates the proof
+    euint32 secret = FHE.fromExternal(val, proof);
+}
+```
 
-If a contract reverts based on an encrypted input's property (e.g., "invalid proof"), it might leak info.
+## 3. Common Attack Vectors
 
-### The "Silent Failure" Pattern
-Zama's `ConfidentialERC20` often uses silent failures (transferring 0 instead of reverting) to prevent leaking whether a user had enough balance.
+### Attack 1: Reentrancy on Callbacks
+`FHE.requestDecryption` triggers an asynchronous callback. If that callback performs external calls, it is vulnerable to reentrancy.
 
-**Auditor's Tip**: Look for `require` statements. If they depend on data that should be secret, they are a red flag.
+### Attack 2: Side-Channel via Gas
+While Zama operations have fixed gas costs, the *number* of operations can still leak data if it varies based on user input.
 
-## 4. Replay Attacks with Ciphertexts
+### Attack 3: Information Leakage via Events
+Events are public. Never log an encrypted handle or, worse, a decrypted secret in an event.
 
-Ciphertexts (handles) should ideally be unique or handled carefully to prevent an attacker from re-submitting a previously used handle to "replay" an action.
+## 4. Auditing Checklist
 
-## 5. Decryption Oracle Misuse
+1.  **[ ] Control Flow**: Search for all instances of `decrypt` or `requestDecryption`. Ensure the results are not used in `if`, `while`, or `for` loops.
+2.  **[ ] ACL**: Verify that every variable assigned to storage has an accompanying `FHE.allowThis()` call.
+3.  **[ ] Data Types**: Ensure that the smallest sufficient type is used (e.g., `euint8` instead of `euint32` for small counters) to minimize attack surface and gas.
+4.  **[ ] External Calls**: Check that decryption callbacks are protected by `msg.sender == gatewayAddress`.
 
-Functions that trigger `FHE.requestDecryption` must be heavily guarded.
+## 5. Security Snippets
 
-- [ ] Is the decryption request triggered only after a specific condition (e.g., auction end)?
-- [ ] Is the callback function `internal` or guarded by a `requestId` check?
+### Secure Callback Guard
+```solidity
+function decryptionCallback(uint256 requestId, uint32 result) public {
+    require(msg.sender == address(gateway), "Only Gateway");
+    // ...
+}
+```
 
 ## 6. Self-Contained References
 Check the `references/` folder for:
-- `SecurityChecklist.md`: Detailed list for auditors.
-- `VulnerableContract.sol`: Example of what NOT to do.
-- `SecureContract.sol`: The secure version of the same logic.
+- `VulnerableContract.sol`: A sample contract with intentional leaks for practice.
+- `SecurityReport.md`: A template for performing an FHEVM security audit.
+- `README.md`: Best practices for secret management in CI/CD.

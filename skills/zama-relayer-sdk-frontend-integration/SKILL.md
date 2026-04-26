@@ -1,91 +1,127 @@
 ---
 name: Zama Relayer SDK Frontend Integration
-description: Guide to integrating Zama's Relayer SDK into your frontend application to handle encrypted inputs and decryptions
-category: frontend
-tags: [relayer-sdk, javascript, typescript, encryption, decryption]
+description: The masterclass in connecting React frontends to Zama FHEVM using the Relayer SDK and fhevmjs. Learn to encrypt inputs, handle signatures, and perform private decryption.
+category: Frontend
+difficulty: advanced
+tags: [fhevm, react, relayer-sdk, fhevmjs, frontend]
+estimated_time: 4 hours
 ---
 
 # Zama Relayer SDK Frontend Integration
 
-The Relayer SDK allows your frontend application to interact with FHEVM smart contracts by handling encryption and decryption processes seamlessly.
+Integrating FHE into a web application is the final frontier of private blockchain development. This guide covers the end-to-end flow of interacting with encrypted data from a browser.
 
-## 1. Installation
+## 1. Overview
+The frontend must handle three critical tasks:
+1.  **Encryption**: Encrypting user inputs before sending them to the blockchain.
+2.  **Signature Management**: Signing requests to allow the Relayer to fetch decrypted data on the user's behalf.
+3.  **Decryption**: Interfacing with the Zama Gateway and KMS via the Relayer SDK to reveal data privately.
 
-Install the Relayer SDK in your project:
+## 2. Prerequisites
+- Familiarity with React and Wagmi/Viem.
+- A deployed FHEVM contract on Sepolia.
+- Completed the `zama-fhevm-hardhat-quickstart` skill.
+
+## 3. Installation
+
+You need `fhevmjs` for client-side encryption and the Relayer SDK for decryption.
 
 ```bash
-npm install @fhevm/sdk
+npm install fhevmjs @fhevm/sdk
 ```
 
-## 2. Initialization
+## 4. Initializing the FHEVM Instance
 
-Initialize the SDK with the FHEVM host chain configuration:
+The `fhevmjs` instance requires the KMS public key, which you can fetch from the Gateway.
 
 ```typescript
-import { createRelayerFhevm } from "@fhevm/sdk";
+import { createInstance } from "fhevmjs";
 
-const fhevm = await createRelayerFhevm({
-  chainId: 11155111, // Sepolia
-  rpcUrl: "https://sepolia.infura.io/v3/YOUR_KEY",
-  relayerUrl: "https://relayer.sepolia.zama.ai",
-});
+async function getFhevmInstance(chainId: number) {
+  // Fetch public key from Zama Gateway
+  const response = await fetch("https://gateway.sepolia.zama.ai/pubkey");
+  const { publicKey } = await response.json();
+
+  return await createInstance({
+    chainId,
+    publicKey,
+  });
+}
 ```
 
-## 3. Creating Encrypted Inputs
+## 5. Encrypting Inputs
 
-To send encrypted data to a smart contract, you must first create an encrypted input. This process handles the encryption and generates a cryptographic proof.
+When a user wants to send a private value, the frontend encrypts it and generates a ZK proof.
 
 ```typescript
-const instance = await fhevm.createEncryptedInput(
+async function encryptValue(instance: any, contractAddress: string, userAddress: string, value: number) {
+  const input = instance.createEncryptedInput(contractAddress, userAddress);
+  input.add32(value);
+  const encrypted = await input.encrypt();
+  
+  return {
+    handle: encrypted.handles[0],
+    proof: encrypted.inputProof,
+  };
+}
+```
+
+## 6. Private Decryption Flow
+
+To see their own encrypted balance, a user must sign a message. This signature is then sent to the Relayer, which interacts with the KMS to get the result.
+
+### Step 1: Request a Signature
+```typescript
+const { signature, publicKey } = await instance.generatePublicKey(contractAddress);
+```
+
+### Step 2: Fetch the Decrypted Result
+```typescript
+const result = await sdk.reencrypt(
+  handle,
+  instance.privateKey,
+  publicKey,
+  signature,
   contractAddress,
   userAddress
 );
-
-// Add values to encrypt
-instance.add8(42); // For euint8
-instance.add32(1337); // For euint32
-
-// Encrypt and get the result
-const encryptedInput = await instance.encrypt();
-
-// Use these in your contract call
-const handle = encryptedInput.handles[0];
-const proof = encryptedInput.inputProof;
-
-await contract.myMethod(handle, proof);
 ```
 
-## 4. User Decryption
+## 7. Security Considerations
+- **Private Key Storage**: Never store the `fhevmjs` private key on a server. It must stay in the user's browser memory.
+- **Phishing**: Users should only sign decryption requests for contracts they trust.
+- **Relayer Trust**: The Relayer SDK is designed so the Relayer itself cannot see the decrypted data (it's encrypted for the user's ephemeral key).
 
-If a contract has granted you permission to view an encrypted value (via ACL), you can decrypt it using the SDK.
+## 8. Gas Optimization Tips
+- **Minimize Re-encryptions**: Re-encryption is a heavy operation for the KMS. Only re-encrypt when the user actually needs to see the value.
+- **Caching**: Cache the FHEVM instance and public key to avoid redundant network requests.
 
+## 9. Common Pitfalls & Solutions
+- **WASM Issues**: `fhevmjs` uses WASM. Ensure your build tool (Vite/Webpack) is configured to handle `.wasm` files and large assets.
+- **ChainId Mismatch**: The encryption public key is specific to the chainId. Ensure they match.
+
+## 10. Full React Hook Example
 ```typescript
-const encryptedValue = await contract.getEncryptedValue();
+import { useState, useEffect } from 'react';
+import { createInstance } from 'fhevmjs';
 
-const clearValue = await fhevm.userDecryptEuint(
-  FhevmType.euint32,
-  encryptedValue,
-  contractAddress,
-  userSigner
-);
+export function useFhevm() {
+  const [instance, setInstance] = useState(null);
 
-console.log("Decrypted value:", clearValue);
+  useEffect(() => {
+    const init = async () => {
+      const inst = await getFhevmInstance(11155111);
+      setInstance(inst);
+    };
+    init();
+  }, []);
+
+  return instance;
+}
 ```
 
-## 5. Public Decryption
-
-For values that are publicly decryptable:
-
-```typescript
-const clearValue = await fhevm.publicDecryptEuint(
-  FhevmType.euint32,
-  encryptedValue,
-  contractAddress
-);
-```
-
-## 6. Best Practices
-
-- **Caching**: Reuse the `fhevm` instance across your application.
-- **Error Handling**: Always handle potential encryption/decryption failures.
-- **Provider Choice**: Use a reliable RPC provider for consistent state checks.
+## 11. Self-Contained References
+Check the `references/` folder for:
+- `relayer-sdk-core.ts`: Implementation of the decryption client.
+- `useFHECounterWagmi.tsx`: A complete React hook for a counter dapp.
+- `README.md`: Setup instructions for Vite/Next.js.
