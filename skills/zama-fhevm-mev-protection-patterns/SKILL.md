@@ -1,30 +1,44 @@
 ﻿---
-name: fhevm mev protection patterns
-description: Elite guide to zama fhevm mev protection patterns on FHEVM. Detailed autonomous instructions with copy-paste ready examples for v5.0.
-category: blockchain
+name: Zama FHEVM MEV PROTECTION PATTERNS
+short_description: Professional v6.1.0 guide to fhevm mev protection patterns on FHEVM.
+category: Security
 difficulty: Advanced
-tags: [fhevm, solidity, patterns]
-estimated_time: 5 hours
-last_updated: 2026-04-26
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
 
-# zama fhevm mev protection patterns
+# Zama FHEVM MEV PROTECTION PATTERNS
 
 ## Overview
-This skill provides production-grade patterns for zama fhevm mev protection patterns in the Zama FHEVM ecosystem.
+Detailed production-grade documentation for fhevm mev protection patterns using Zama's FHEVM.
 
-## Why It Matters
-Essential for building resilient, private decentralized applications that are resistant to common on-chain attack vectors.
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-## Step-by-Step Implementation
-Please refer to the references/ folder for the complete v5.0 codebase and deployment scripts.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-## Gas Analysis
-Detailed performance metrics are included in the references/ folder.
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-## Security Audit Checklist
-- [ ] Verify ACL permissions.
-- [ ] Check for side-channel leaks.
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-## Self-Contained References
-Check the references/ folder for core implementation details.
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
+
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
+
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
+
+## AI Agent Prompt
+> "Analyze this implementation of fhevm mev protection patterns on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

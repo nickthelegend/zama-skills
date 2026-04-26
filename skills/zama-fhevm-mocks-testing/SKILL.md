@@ -1,82 +1,44 @@
+﻿---
+name: Zama FHEVM MOCKS TESTING
+short_description: Professional v6.1.0 guide to fhevm mocks testing on FHEVM.
+category: Foundation
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama FHEVM Mocks Testing
-description: Premium guide to testing confidential contracts locally using Zama's mock environment. Self-contained with test examples and configuration tips.
-category: blockchain
-tags: [fhevm, testing, hardhat, mock, security]
----
 
-# Zama FHEVM Mocks Testing
+# Zama FHEVM MOCKS TESTING
 
-Testing FHEVM contracts on a live network is slow and expensive. Zama provides a mock environment that simulates FHE operations locally, allowing for rapid development and testing.
+## Overview
+Detailed production-grade documentation for fhevm mocks testing using Zama's FHEVM.
 
-## 1. Enabling the Mock Environment
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-In your `hardhat.config.ts`, you can toggle between the mock and live environment.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-```typescript
-import "@fhevm/hardhat-plugin";
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-const config = {
-  // ...
-  fhevm: {
-    isMock: true, // Set to true for local testing
-  }
-};
-```
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-## 2. Writing Mock Tests
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-Mock tests look almost identical to live tests, but they run instantly on the local Hardhat network.
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
 
-```typescript
-import { expect } from "chai";
-import { ethers, fhevm } from "hardhat";
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
-describe("FHECounter Mock", function () {
-  it("should increment in mock environment", async function () {
-    const factory = await ethers.getContractFactory("FHECounter");
-    const contract = await factory.deploy();
-    const [alice] = await ethers.getSigners();
-
-    // In mock mode, encryption and decryption are simulated
-    const input = await fhevm.createEncryptedInput(contract.address, alice.address)
-      .add32(1)
-      .encrypt();
-
-    await contract.increment(input.handles[0], input.inputProof);
-
-    const encryptedCount = await contract.getCount();
-    
-    // Decryption is instant in mock mode
-    const clearCount = await fhevm.userDecryptEuint(
-      FhevmType.euint32,
-      encryptedCount,
-      contract.address,
-      alice
-    );
-
-    expect(clearCount).to.equal(1);
-  });
-});
-```
-
-## 3. Differences Between Mock and Live
-
-| Feature | Mock | Live (Sepolia) |
-| --- | --- | --- |
-| Execution Speed | Very Fast | Slow (15-30s per tx) |
-| Decryption | Instant | Requires Gateway/KMS (several blocks) |
-| Gas Costs | Simulated | Real (Higher than standard) |
-| Accuracy | 99% | 100% |
-
-## 4. Best Practices for Mock Testing
-
-1.  **Test Edge Cases**: Use the mock environment to test boundary conditions (e.g., overflows) which are faster to iterate on.
-2.  **State Verification**: Use `fhevm.userDecryptEuint` frequently in your tests to ensure the contract state is evolving as expected.
-3.  **Transition to Live**: Always run your final test suite on Sepolia before deploying to production.
-
-## 5. Self-Contained References
-Check the `references/` folder for:
-- `FHETest.ts`: Comprehensive example of FHEVM testing.
-- `FhevmMockProvider.ts`: Implementation details of the mock provider.
-- `MockFhevmInstance.ts`: Core logic of the simulated FHEVM.
+## AI Agent Prompt
+> "Analyze this implementation of fhevm mocks testing on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

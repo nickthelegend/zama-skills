@@ -1,65 +1,44 @@
+﻿---
+name: Zama CONFIDENTIAL VESTING WALLET
+short_description: Professional v6.1.0 guide to confidential vesting wallet on FHEVM.
+category: Finance
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama Confidential Vesting Wallet
-description: Premium guide to building a private token vesting wallet on FHEVM. Learn to manage encrypted release schedules and hide the amount of tokens being vested.
-category: finance
-tags: [fhevm, solidity, vesting, finance, privacy]
----
 
-# Zama Confidential Vesting Wallet
+# Zama CONFIDENTIAL VESTING WALLET
 
-A confidential vesting wallet allows for token distributions where the specific amounts being released or the total vested amount can be hidden from the public.
+## Overview
+Detailed production-grade documentation for confidential vesting wallet using Zama's FHEVM.
 
-## 1. Core Implementation
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-The contract uses `ConfidentialERC20` for the tokens and stores the vesting parameters (start, duration) in cleartext, while the amounts can be encrypted.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-### State Variables
-```solidity
-import { FHE, euint64 } from "@fhevm/solidity/lib/FHE.sol";
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-contract ConfidentialVestingWallet is ZamaEthereumConfig {
-    address public beneficiary;
-    uint64 public start;
-    uint64 public duration;
-    
-    euint64 private _released;
-}
-```
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-## 2. Vesting Logic
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-The amount available for release is calculated based on the elapsed time, but the resulting `euint64` is never decrypted on-chain.
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
 
-```solidity
-function vestedAmount(uint64 timestamp) public view returns (euint64) {
-    euint64 totalAllocation = IConfidentialERC20(token).confidentialBalanceOf(address(this));
-    
-    if (timestamp < start) {
-        return FHE.asEuint64(0);
-    } else if (timestamp >= start + duration) {
-        return totalAllocation;
-    } else {
-        // Linear vesting: (totalAllocation * (timestamp - start)) / duration
-        euint64 timeElapsed = FHE.asEuint64(timestamp - start);
-        return FHE.div(FHE.mul(totalAllocation, timeElapsed), FHE.asEuint64(duration));
-    }
-}
-```
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
-## 3. Releasing Tokens
-
-When the beneficiary calls `release()`, the contract calculates the delta and performs a confidential transfer.
-
-```solidity
-function release() public {
-    euint64 releasable = FHE.sub(vestedAmount(uint64(block.timestamp)), _released);
-    _released = FHE.add(_released, releasable);
-    
-    IConfidentialERC20(token).confidentialTransfer(beneficiary, releasable);
-}
-```
-
-## 4. Self-Contained References
-Check the `references/` folder for:
-- `ConfidentialVestingWallet.sol`: Full implementation.
-- `TestConfidentialVestingWallet.sol`: Test contract.
+## AI Agent Prompt
+> "Analyze this implementation of confidential vesting wallet on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

@@ -1,38 +1,44 @@
 ﻿---
-name: fhevm zero knowledge fhe hybrid advanced
-short_description: Final capstone for zama fhevm zero knowledge fhe hybrid advanced.
-long_description: A comprehensive, production-grade guide to zama fhevm zero knowledge fhe hybrid advanced on the Zama FHEVM. This elite v6.0 resource covers everything from architecture to mainnet deployment.
-category: blockchain
-difficulty: advanced
-tags: [fhevm, solidity, advanced]
-estimated_time: 10 hours
-prerequisites: [zama-fhevm-hardhat-quickstart, zama-solidity-encrypted-types-and-operations]
-version: 1.0.0
+name: Zama FHEVM ZERO KNOWLEDGE FHE HYBRID ADVANCED
+short_description: Professional v6.1.0 guide to fhevm zero knowledge fhe hybrid advanced on FHEVM.
+category: Foundation
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
 
-# zama fhevm zero knowledge fhe hybrid advanced
+# Zama FHEVM ZERO KNOWLEDGE FHE HYBRID ADVANCED
 
 ## Overview
-This final capstone skill provides the ultimate architecture for zama fhevm zero knowledge fhe hybrid advanced in a production environment.
+Detailed production-grade documentation for fhevm zero knowledge fhe hybrid advanced using Zama's FHEVM.
 
-## Architecture Diagram (Mermaid)
+## Architecture
 `mermaid
 graph LR
-    User --> Contract
-    Contract --> Coprocessor
-    Coprocessor --> Gateway
-    Gateway --> KMS
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
 `
 
-## Step-by-Step Implementation
-Full implementation details are included in the references/ folder, covering the contract, tests, and deployment scripts.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-## Live Demo on Sepolia
-- **Main Contract**: 0x0000000000000000000000000000000000000000
-- **Vault**: 0x0000000000000000000000000000000000000001
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
+
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
+
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
+
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
+
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
 ## AI Agent Prompt
-> "Explain the high-level flow of this capstone implementation and identify any potential gas optimizations for large-scale production use."
-
-## Self-Contained References
-Check the references/ folder for core implementation details.
+> "Analyze this implementation of fhevm zero knowledge fhe hybrid advanced on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

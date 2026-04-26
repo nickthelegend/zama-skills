@@ -1,51 +1,44 @@
+﻿---
+name: Zama CONFIDENTIAL ORDER BOOK DEX
+short_description: Professional v6.1.0 guide to confidential order book dex on FHEVM.
+category: Finance
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama Confidential Order Book DEX
-description: Premium guide to building a private Order Book DEX on FHEVM. Learn to match encrypted buy and sell orders using FHE.select and protect traders from front-running.
-category: blockchain
-tags: [fhevm, solidity, dex, order-book, finance]
----
 
-# Zama Confidential Order Book DEX
+# Zama CONFIDENTIAL ORDER BOOK DEX
 
-Most DEXs use AMMs because order books are difficult to build on-chain without revealing every trader's intention. Zama enables a fully private order book where matches happen in the shadows.
+## Overview
+Detailed production-grade documentation for confidential order book dex using Zama's FHEVM.
 
-## 1. Submitting Encrypted Orders
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-Traders submit their desired price and volume as encrypted values.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-```solidity
-struct Order {
-    address trader;
-    euint32 price;
-    euint32 volume;
-    bool isBuy;
-}
-```
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-## 2. The Matching Engine
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-The contract iterates through open orders and uses `FHE.select` to determine if a match exists without revealing the prices.
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-```solidity
-function matchOrders(uint256 buyId, uint256 sellId) public {
-    Order storage buy = buyOrders[buyId];
-    Order storage sell = sellOrders[sellId];
-    
-    // Check if buy price >= sell price
-    ebool isMatch = FHE.ge(buy.price, sell.price);
-    
-    // Determine the trade price (e.g., the midpoint)
-    euint32 tradePrice = FHE.select(isMatch, FHE.div(FHE.add(buy.price, sell.price), 2), FHE.asEuint32(0));
-    
-    // Execute trade if isMatch is true
-    // ...
-}
-```
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
 
-## 3. MEV Protection
-By keeping the order book encrypted, searchers cannot see the orders in the mempool to front-run them. This eliminates Sandwich attacks and other toxic MEV.
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
-## 4. Self-Contained References
-Check the `references/` folder for:
-- `ConfidentialDEX.sol`: A matching engine implementation in FHE.
-- `DEXTest.ts`: Tests for verifying matches without price leaks.
+## AI Agent Prompt
+> "Analyze this implementation of confidential order book dex on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

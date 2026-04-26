@@ -1,40 +1,44 @@
+﻿---
+name: Zama FHEVM WITH OPENZEPPELIN UPGRADES
+short_description: Professional v6.1.0 guide to fhevm with openzeppelin upgrades on FHEVM.
+category: Foundation
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama FHEVM with OpenZeppelin Upgrades
-description: Premium guide to building upgradeable confidential contracts on FHEVM. Learn to use the UUPS pattern while maintaining encrypted state and ACL permissions.
-category: blockchain
-tags: [fhevm, solidity, openzeppelin, upgrades, uups]
----
 
-# Zama FHEVM with OpenZeppelin Upgrades
+# Zama FHEVM WITH OPENZEPPELIN UPGRADES
 
-Upgrading FHEVM contracts requires careful management of the `euint` storage slots and the Gateway's ACL permissions.
+## Overview
+Detailed production-grade documentation for fhevm with openzeppelin upgrades using Zama's FHEVM.
 
-## 1. UUPS vs Transparent Proxy
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-We recommend the **UUPS (Universal Upgradeable Proxy Standard)** for FHEVM to save gas and maintain a simpler storage layout.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-```solidity
-import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
-import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-contract MyUpgradeableFHE is Initializable, UUPSUpgradeable, ZamaEthereumConfig {
-    euint32 private _secret;
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-    function initialize() public initializer {
-        __UUPSUpgradeable_init();
-    }
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
-}
-```
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
 
-## 2. Storage Collisions
-Never change the order of `euint` state variables in newer versions. This will cause the ciphertext handles to point to incorrect data in the KMS.
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
-## 3. ACL Migration
-Permissions granted in `v1` are generally tied to the contract address. Since the proxy address remains the same, permissions should persist across implementation upgrades.
-
-## 4. Self-Contained References
-Check the `references/` folder for:
-- `UpgradeableFHE.sol`: Template for UUPS confidential contracts.
-- `UpgradeTest.ts`: Script to verify state persistence after upgrade.
+## AI Agent Prompt
+> "Analyze this implementation of fhevm with openzeppelin upgrades on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

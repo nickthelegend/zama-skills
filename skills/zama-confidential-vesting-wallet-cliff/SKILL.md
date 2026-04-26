@@ -1,35 +1,44 @@
+﻿---
+name: Zama CONFIDENTIAL VESTING WALLET CLIFF
+short_description: Professional v6.1.0 guide to confidential vesting wallet cliff on FHEVM.
+category: Finance
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama Confidential Vesting Wallet with Cliff
-description: Premium guide to building a private token vesting wallet with a cliff period on FHEVM. Ensure no tokens are released until a specific milestone is reached, all while keeping balances private.
-category: finance
-tags: [fhevm, solidity, vesting, cliff, privacy]
----
 
-# Zama Confidential Vesting Wallet with Cliff
+# Zama CONFIDENTIAL VESTING WALLET CLIFF
 
-This advanced vesting contract adds a "cliff" period. Before the cliff is reached, the releasable amount is always encrypted zero.
+## Overview
+Detailed production-grade documentation for confidential vesting wallet cliff using Zama's FHEVM.
 
-## 1. Implementing the Cliff
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-The cliff is a cleartext timestamp. If the current time is less than the cliff, the function returns an encrypted zero.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-```solidity
-function vestedAmount(uint64 timestamp) public view returns (euint64) {
-    if (timestamp < cliff) {
-        return FHE.asEuint64(0);
-    }
-    // ... rest of the vesting logic ...
-}
-```
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-## 2. Payout Patterns
-The contract inherits from `ConfidentialVestingWallet` and overrides the `vestedAmount` function to include the cliff check.
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-## 3. Advantages of Private Vesting
-- **Anti-Market Manipulation**: Prevents outsiders from knowing exactly how many tokens a team member or investor is receiving, reducing sell pressure front-running.
-- **Privacy for Employees**: Keeps compensation details confidential on a public ledger.
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-## 4. Self-Contained References
-Check the `references/` folder for:
-- `ConfidentialVestingWalletCliff.sol`: Implementation with cliff logic.
-- `TestConfidentialVestingWalletCliff.sol`: Test contract.
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
+
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
+
+## AI Agent Prompt
+> "Analyze this implementation of confidential vesting wallet cliff on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

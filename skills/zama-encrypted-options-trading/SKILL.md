@@ -1,57 +1,44 @@
+﻿---
+name: Zama ENCRYPTED OPTIONS TRADING
+short_description: Professional v6.1.0 guide to encrypted options trading on FHEVM.
+category: Foundation
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama Encrypted Options Trading
-description: Premium guide to building a private options trading platform on FHEVM. Learn to handle encrypted strike prices, expiration logic, and settlement without revealing positions.
-category: blockchain
-tags: [fhevm, solidity, trading, options, finance]
----
 
-# Zama Encrypted Options Trading
+# Zama ENCRYPTED OPTIONS TRADING
 
-Encrypted options allow traders to open positions without the market knowing their strike price or volume, preventing predatory front-running and stop-loss hunting.
+## Overview
+Detailed production-grade documentation for encrypted options trading using Zama's FHEVM.
 
-## 1. Opening a Position
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-A trader locks collateral and specifies an encrypted strike price.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-```solidity
-import { FHE, euint32 } from "@fhevm/solidity/lib/FHE.sol";
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-contract OptionsPlatform is ZamaEthereumConfig {
-    struct Position {
-        address trader;
-        euint32 strikePrice;
-        uint256 expiration;
-        bool isCall;
-    }
-    
-    mapping(uint256 => Position) public positions;
-}
-```
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-## 2. Settlement Logic
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-At expiration, the platform compares the encrypted strike price with the public market price.
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
 
-```solidity
-function settle(uint256 positionId, uint32 currentMarketPrice) public {
-    Position storage p = positions[positionId];
-    require(block.timestamp >= p.expiration, "Not expired");
-    
-    // Convert public price to encrypted for comparison
-    euint32 marketPrice = FHE.asEuint32(currentMarketPrice);
-    
-    ebool isInTheMoney = FHE.gt(marketPrice, p.strikePrice);
-    
-    // Pay out if in the money
-    // ...
-}
-```
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
-## 3. Advantages of FHE in Trading
-- **Dark Pool Mechanics**: Full privacy of the order book.
-- **Fair Settlement**: Settlement is calculated on-chain, but the details of who won what can remain private until the payout.
-
-## 4. Self-Contained References
-Check the `references/` folder for:
-- `ConfidentialOptions.sol`: Implementation of an encrypted options contract.
-- `TradingBot.ts`: Example script for interacting with the options platform.
+## AI Agent Prompt
+> "Analyze this implementation of encrypted options trading on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

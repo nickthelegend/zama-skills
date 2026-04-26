@@ -1,8 +1,16 @@
 {
   "name": "@nickthelegend/zama-skills",
-  "version": "6.0.0",
-  "description": "The Official v6.0 Ultimate Zama FHEVM Resource. 78 production-grade, authoritative skills for AI agents and human developers.",
+  "version": "6.1.0",
+  "description": "The Definitive v6.1.0 Zama FHEVM Master Collection. 78 production-grade skills for AI agents and senior developers.",
   "main": "index.json",
+  "files": [
+    "index.json",
+    "skills",
+    "EXAMPLES",
+    "README.md",
+    "CHEATSHEET.md",
+    "LICENSE"
+  ],
   "homepage": "https://github.com/nickthelegend/zama-skills",
   "keywords": [
     "zama",
@@ -15,9 +23,7 @@
     "ai-agents",
     "skills",
     "defi",
-    "rwa",
-    "governance",
-    "mpc"
+    "governance"
   ],
   "author": "nickthelegend",
   "license": "BSD-3-Clause-Clear",

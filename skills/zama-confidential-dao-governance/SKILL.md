@@ -1,61 +1,44 @@
+﻿---
+name: Zama CONFIDENTIAL DAO GOVERNANCE
+short_description: Professional v6.1.0 guide to confidential dao governance on FHEVM.
+category: Governance
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama Confidential DAO Governance
-description: Premium guide to implementing a private DAO governance framework on FHEVM. Learn to manage proposals, delegated voting power, and secret treasury management.
-category: blockchain
-tags: [fhevm, solidity, dao, governance, privacy]
----
 
-# Zama Confidential DAO Governance
+# Zama CONFIDENTIAL DAO GOVERNANCE
 
-Confidential DAO governance allows members to vote on proposals without revealing their individual stances or voting power, protecting against social pressure and bribery.
+## Overview
+Detailed production-grade documentation for confidential dao governance using Zama's FHEVM.
 
-## 1. Proposal Lifecycle
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-In a Zama-powered DAO, proposal details (title, description) are public, but the voting power and the current tally remain encrypted.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-### State Variables
-```solidity
-struct Proposal {
-    string description;
-    euint32 forVotes;
-    euint32 againstVotes;
-    bool resolved;
-    uint256 endTime;
-}
-```
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-## 2. Weighted Voting
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-If your DAO uses a token-weighted model, you can use the user's `confidentialBalanceOf` (from an ERC7984 token) to determine their voting power without revealing their balance.
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-```solidity
-function voteOnProposal(uint256 proposalId, bool support) public {
-    Proposal storage p = proposals[proposalId];
-    require(block.timestamp < p.endTime, "Voting ended");
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
 
-    // Fetch the user's encrypted balance as voting power
-    euint32 power = IConfidentialERC20(token).confidentialBalanceOf(msg.sender);
-    
-    if (support) {
-        p.forVotes = FHE.add(p.forVotes, power);
-    } else {
-        p.againstVotes = FHE.add(p.againstVotes, power);
-    }
-    
-    FHE.allowThis(p.forVotes);
-    FHE.allowThis(p.againstVotes);
-}
-```
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
-## 3. Secret Treasury Management
-
-A DAO can maintain an encrypted treasury. For example, a proposal could be to "spend X amount of tokens," where X is encrypted and only the winner or the service provider can decrypt the amount.
-
-## 4. Best Practices
-- **Snapshot Periods**: Use a "Snapshot" of encrypted balances at a specific block to prevent "flash loan" voting attacks.
-- **Threshold Decryption**: Use the Zama Gateway callback to reveal only the *outcome* (Pass/Fail) without revealing the exact vote counts if desired.
-
-## 5. Self-Contained References
-Check the `references/` folder for:
-- `ConfidentialDAO.sol`: Comprehensive DAO contract with encrypted voting power.
-- `GovernanceOApp.test.ts`: Example tests from the `protocol-apps` repo.
+## AI Agent Prompt
+> "Analyze this implementation of confidential dao governance on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

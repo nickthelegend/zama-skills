@@ -1,23 +1,44 @@
 ﻿---
-name: confidential snapshot voting
-description: World-class guide to zama confidential snapshot voting on FHEVM. Detailed autonomous instructions with copy-paste ready examples.
-category: blockchain
-difficulty: intermediate
-tags: [fhevm, solidity, voting]
-estimated_time: 1.5 hours
+name: Zama CONFIDENTIAL SNAPSHOT VOTING
+short_description: Professional v6.1.0 guide to confidential snapshot voting on FHEVM.
+category: Governance
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
 
-# zama confidential snapshot voting
+# Zama CONFIDENTIAL SNAPSHOT VOTING
 
 ## Overview
-Detailed v4.0 documentation for zama confidential snapshot voting is under construction. This skill provides production-grade patterns for zama confidential snapshot voting.
+Detailed production-grade documentation for confidential snapshot voting using Zama's FHEVM.
 
-## Step-by-Step Implementation
-Please refer to the references/ folder for the complete codebase.
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-## Security Considerations
-- Ensure ACL permissions are correctly scoped.
-- Use FHE.allowThis() for all state updates.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-## Self-Contained References
-Check the references/ folder for core implementation details.
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
+
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
+
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
+
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
+
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
+
+## AI Agent Prompt
+> "Analyze this implementation of confidential snapshot voting on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."

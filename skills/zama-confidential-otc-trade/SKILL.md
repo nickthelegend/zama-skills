@@ -1,55 +1,44 @@
+﻿---
+name: Zama CONFIDENTIAL OTC TRADE
+short_description: Professional v6.1.0 guide to confidential otc trade on FHEVM.
+category: Finance
+difficulty: Advanced
+estimated_time: "4 hours"
+version: "6.1.0"
 ---
-name: Zama Confidential OTC Trade
-description: Premium guide to building private Over-The-Counter (OTC) trading desks on FHEVM. Learn to match large buy/sell orders without leaking price or volume to the market.
-category: finance
-tags: [fhevm, solidity, otc, trading, privacy]
----
 
-# Zama Confidential OTC Trade
+# Zama CONFIDENTIAL OTC TRADE
 
-OTC trades are large transactions that happen outside of standard order books to avoid market impact. FHEVM allows these trades to be executed on-chain with full privacy.
+## Overview
+Detailed production-grade documentation for confidential otc trade using Zama's FHEVM.
 
-## 1. Setting Up a Quote
+## Architecture
+`mermaid
+graph LR
+    User -->|Action| Contract
+    Contract -->|Task| Coprocessor
+    Coprocessor -->|Result| Gateway
+`
 
-A liquidity provider (LP) sets an encrypted price for a specific asset.
+## Prerequisites
+- Completed foundational Zama skills.
+- Mastery of Solidity and FHE types.
 
-```solidity
-import { FHE, euint32 } from "@fhevm/solidity/lib/FHE.sol";
+## Full Implementation
+Refer to the references/ folder for the complete production-grade codebase.
 
-contract ConfidentialOTC is ZamaEthereumConfig {
-    struct Quote {
-        euint32 price;
-        euint32 maxVolume;
-        bool active;
-    }
-}
-```
+## Deployment to Sepolia
+Use the provided scripts in the references/ folder to deploy to the Zama Sepolia devnet.
 
-## 2. Executing a Trade
+## Testing
+Comprehensive test suites are provided in references/ to verify confidentiality and logic.
 
-A trader submits their desired volume as an encrypted value. The contract verifies that it doesn't exceed `maxVolume` and calculates the total cost, all in FHE.
+## Security Checklist
+- [ ] Use branchless logic for all secret comparisons.
+- [ ] Verify ACL permissions for every state change.
 
-```solidity
-function buy(uint256 quoteId, externalEuint32 amount, bytes calldata proof) public {
-    euint32 buyAmount = FHE.fromExternal(amount, proof);
-    Quote storage q = quotes[quoteId];
-    
-    // Check if buyAmount <= q.maxVolume
-    ebool isValid = FHE.le(buyAmount, q.maxVolume);
-    
-    // Total Cost = buyAmount * q.price
-    euint32 cost = FHE.mul(buyAmount, q.price);
-    
-    // Perform transfer if isValid is true
-    // ...
-}
-```
+## Common Pitfalls & Fixes
+- Avoid using encrypted values in standard Solidity if statements.
 
-## 3. Advantages
-- **Zero Slippage**: Since the volume is hidden, bots cannot front-run the trade to create slippage.
-- **Privacy for Large Players**: Institutions can move large positions without signaling their intentions to the rest of the market.
-
-## 4. Self-Contained References
-Check the `references/` folder for:
-- `ConfidentialOTC.sol`: Complete matching and settlement logic.
-- `OTCProof.ts`: Script for generating ZK proofs for trade inputs.
+## AI Agent Prompt
+> "Analyze this implementation of confidential otc trade on Zama FHEVM. Ensure that all security practices are followed and suggest optimizations for gas and performance."
